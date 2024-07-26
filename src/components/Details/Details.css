@@ -1,0 +1,22 @@
+.angar {
+    width: 100%;
+    background-image: url(https://eu-wotp.wgcdn.co/static/5.97.0_abe061/wotp_static/img/tankopedia_new/frontend/scss/tankopedia-detail/img/hangar-bg.webp);
+    background-size: cover;
+}
+
+span {
+    font-size: 25px;
+    color: white;
+}
+
+@media all and (max-width: 1000px) {
+    .desc {
+        display: none;
+    }
+
+    .solo {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+}
