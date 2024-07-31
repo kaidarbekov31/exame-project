@@ -77,7 +77,7 @@ const Routing = () => {
             <Route
               path={item.link}
               element={
-                user.email === "tarieltairov1@gmail.com" ? (
+                user.email === "ajdarbekovkudajberdi@gmail.com" ? (
                   item.element
                 ) : (
                   <Navigate replace to="*" />

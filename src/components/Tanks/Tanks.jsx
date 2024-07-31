@@ -66,14 +66,14 @@ const Tanks = ({ item }) => {
             <Link to={`/details/${item.id}`}>
               <MoreOutlined />
             </Link>
-            {email === "tarieltairov1@gmail.com" ? (
+            {email === "ajdarbekovkudajberdi@gmail.com" ? (
               <DeleteOutlined
                 style={{ color: "orangered" }}
                 onClick={() => deleteTanks(item.id)}
                 className="m-3"
               />
             ) : null}
-            {email === "tarieltairov1@gmail.com" ? (
+            {email === "ajdarbekovkudajberdi@gmail.com" ? (
               <Link to={`/edit/${item.id}`}>
                 <EditOutlined style={{ color: "orangered" }} className="m-3" />
               </Link>

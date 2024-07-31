@@ -34,7 +34,7 @@ const Details = () => {
             style={{
               backgroundImage: `url(${tank.image})`,
               backgroundSize: 'cover',
-              // height: "100%",
+             
               width: "100%",
               paddingTop: '100px',
               flexWrap: 'wrap',

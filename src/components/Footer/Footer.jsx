@@ -45,7 +45,7 @@ const Footer = () => {
           </h3>
         </div>
         <div
-          // className="d-flex justify-content-evenly"
+         
           style={{ width: "100%", display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}
         >
           <a
@@ -100,8 +100,7 @@ const Footer = () => {
           <h5 className="footer_text">
             Email:{" "}
             <span style={{ color: "#3399ff", fontSize: "22px" }}>
-              tarieltairov1@gmail.com
-            </span>{" "}
+            ajdarbekovkudajberdi@gmail.com            </span>{" "}
           </h5>
           <h5 className="footer_text">
             Phone number:{" "}
@@ -109,7 +108,7 @@ const Footer = () => {
               href="tel:+996704135830"
               style={{ textDecoration: "none", color: "#3399ff" }}
             >
-              +996704135830
+              +996707614021
             </a>
           </h5>
         </div>

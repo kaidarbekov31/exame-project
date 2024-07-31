@@ -15,7 +15,7 @@ const Login = () => {
           autoFocus
           required
         />
-        {/* <p className="error-msg">{emailError}</p> */}
+   
 
         <label className="auth-label">Password</label>
         <input
@@ -24,7 +24,7 @@ const Login = () => {
           autoFocus
           required
         />
-        {/* <p className="error-msg">{passwordError}</p> */}
+       
 
         <div className="btn-container">
           {hasAccount ? (
