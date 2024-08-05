@@ -1,11 +1,10 @@
-import firebase from "firebase/compat/app";
-import "firebase/compat/app";
-import "firebase/compat/auth";
-import { getAuth } from "firebase/auth";
+// Import necessary Firebase modules
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
 
-
+// Firebase configuration object
 const firebaseConfig = {
- apiKey: "AIzaSyARxdpWGuebrmzq8_LBnUl7KvBTavqM-2E",
+  apiKey: "AIzaSyARxdpWGuebrmzq8_LBnUl7KvBTavqM-2E",
   authDomain: "project-wot-50745.firebaseapp.com",
   projectId: "project-wot-50745",
   storageBucket: "project-wot-50745.appspot.com",
@@ -13,7 +12,10 @@ const firebaseConfig = {
   appId: "1:668331022457:web:361fa50d89dd07a8aedca8"
 };
 
-const fire = firebase.initializeApp(firebaseConfig);
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
-export const auth = getAuth(fire)
-export default fire;
+// Get Firebase Auth instance
+export const auth = getAuth(app);
+
+export default app;

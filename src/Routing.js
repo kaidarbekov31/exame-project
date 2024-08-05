@@ -1,6 +1,5 @@
-// components/Routing.jsx
 import React, { useState } from "react";
-import { Navigate, Route, Routes } from "react-router";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Add from "./components/Add/Add";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
@@ -14,86 +13,39 @@ import Invoic from "./components/Invoic/Invoic";
 import Forgot from "./components/Auth/Forgot";
 
 const Routing = () => {
-  const [user, setUser] = useState(false);
-  let routes = [
-    {
-      link: "/",
-      element: <Home />,
-      id: 1,
-    },
-    {
-      link: "/tanks",
-      element: <TanksList />,
-      id: 2,
-    },
-    {
-      link: "edit/:id",
-      element: <Edit />,
-      id: 3,
-    },
-    {
-      link: "details/:id",
-      element: <Details />,
-      id: 4,
-    },
-    {
-      link: "/auth",
-      element: <Login />,
-      id: 5,
-    },
-    {
-      link: "/register",
-      element: <Register />,
-      id: 6,
-    },
-    {
-      link: "/cart",
-      element: <Cart />,
-      id: 7,
-    },
-    {
-      link: "/favourites",
-      element: <Favourites />,
-      id: 8,
-    },
-    {
-      link: "/invoic",
-      element: <Invoic />,
-      id: 9,
-    },
-    {
-      link: "/forgot",
-      element: <Forgot />,
-      id: 10,
-    },
+  const [user, setUser] = useState(null); // Assume user is an object or null
+  const isAdmin = user?.email === "ajdarbekovkudajberdi@gmail.com"; // Check if the user is an admin
+
+  const routes = [
+    { path: "/", element: <Home />, id: 1 },
+    { path: "/tanks", element: <TanksList />, id: 2 },
+    { path: "/edit/:id", element: <Edit />, id: 3 },
+    { path: "/details/:id", element: <Details />, id: 4 },
+    { path: "/auth", element: <Login />, id: 5 },
+    { path: "/register", element: <Register />, id: 6 },
+    { path: "/cart", element: <Cart />, id: 7 },
+    { path: "/favourites", element: <Favourites />, id: 8 },
+    { path: "/invoic", element: <Invoic />, id: 9 },
+    { path: "/forgot", element: <Forgot />, id: 10 },
   ];
 
-  let admin = [
-    {
-      link: "/add",
-      element: <Add />,
-    },
+  const adminRoutes = [
+    { path: "/add", element: <Add /> },
   ];
+
   return (
     <Routes>
-      {routes.map((item) => (
-        <Route key={item.id} path={item.link} element={item.element} />
+      {routes.map((route) => (
+        <Route key={route.id} path={route.path} element={route.element} />
       ))}
-      {user
-        ? admin.map((item) => (
-            <Route
-              key={item.link}
-              path={item.link}
-              element={
-                user.email === "ajdarbekovkudajberdi@gmail.com" ? (
-                  item.element
-                ) : (
-                  <Navigate replace to="*" />
-                )
-              }
-            />
-          ))
-        : null}
+      {user &&
+        adminRoutes.map((route) => (
+          <Route
+            key={route.path}
+            path={route.path}
+            element={isAdmin ? route.element : <Navigate replace to="/" />}
+          />
+        ))}
     </Routes>
   );
 };

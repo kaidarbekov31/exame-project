@@ -1,10 +1,11 @@
-import { List } from "antd";
+// В файле Favourites.jsx
+import { FavouriteContext } from "../../context/favouritesContext";
 import React, { useContext, useEffect } from "react";
-import { favouriteContext } from "../../context/favouritesContext";
+import { List } from "antd";
 import FavouritesItem from "./FavouritesItem";
 
 const Favourites = () => {
-  const { getFavourite, favourite } = useContext(favouriteContext);
+  const { getFavourite, favourite } = useContext(FavouriteContext);
 
   useEffect(() => {
     const fetchFavourites = async () => {
@@ -30,4 +31,3 @@ const Favourites = () => {
 };
 
 export default Favourites;
-

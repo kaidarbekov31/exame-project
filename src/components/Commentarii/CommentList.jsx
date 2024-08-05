@@ -1,12 +1,12 @@
 import { Input } from "antd";
 import React, { useContext, useEffect, useState } from "react";
-import { commentContext } from "../../context/commentsContext";
+import { CommentContext } from "../../context/commentsContext"; // Обратите внимание на правильное имя
 import Comments from "../Commentarii/Comments";
 import "./Comments.css";
 import Likes from "../Likes/Likes";
 
 const CommentList = ({ id }) => {
-  const { getComments, comments, createComment } = useContext(commentContext);
+  const { getComments, comments, createComment } = useContext(CommentContext); // Используйте CommentContext
   const [email, setEmail] = useState(false); // Добавлено состояние для email
   const [newComment, setNewComment] = useState({
     word: "",

@@ -6,18 +6,21 @@ import Logo from "../image/logo-3.png";
 import { StarOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Badge } from "antd";
 import { cartContext } from "../../context/cartContext";
-import { favouriteContext } from "../../context/favouritesContext";
+import { FavouriteContext } from "../../context/favouritesContext";
 
 const Header = () => {
   const location = useLocation();
-  const [email, setEmail] = useState(); // Убедитесь, что email инициализирован корректно
+  const [email, setEmail] = useState(null); // Инициализация состояния email как null
+
   const { getCart, cartLength } = useContext(cartContext);
-  const { getFavourite, favouriteLength } = useContext(favouriteContext);
+  const { getFavourite, favourite, favouriteLength } = useContext(FavouriteContext);
 
   useEffect(() => {
     getCart();
     getFavourite();
   }, [getCart, getFavourite]);
+
+  // Здесь должен быть код для получения email, если он хранится в контексте или локальном хранилище
 
   return (
     <Navbar className="navbar" variant="light">
@@ -72,4 +75,3 @@ const Header = () => {
 };
 
 export default Header;
-

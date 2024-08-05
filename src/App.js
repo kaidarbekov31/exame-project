@@ -20,7 +20,7 @@ const App = () => {
   return (
     <div>
       <TanksContextProvider>
-        <CommentContextProvider>
+      <CommentContextProvider>
           <CartContextProvider>
             <FavouriteContextProvider>
               <LikesContextProvider>
@@ -35,7 +35,7 @@ const App = () => {
               </LikesContextProvider>
             </FavouriteContextProvider>
           </CartContextProvider>
-        </CommentContextProvider>
+          </CommentContextProvider>
       </TanksContextProvider>
     </div>
   );

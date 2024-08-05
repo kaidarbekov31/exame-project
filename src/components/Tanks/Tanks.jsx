@@ -10,16 +10,16 @@ import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { TanksContext } from "../../context/TanksContext";
 import { cartContext } from "../../context/cartContext";
-import { favouriteContext } from "../../context/favouritesContext";
+import { FavouriteContext } from "../../context/favouritesContext"; // Убедитесь, что импортируете правильно
 import "./Tanks.css";
 
 const Tanks = ({ item }) => {
   const { deleteTanks } = useContext(TanksContext);
   const { addProductToCart, checkItemInCart } = useContext(cartContext);
-  const { addProductToFavourite, checkItemInFavourite } = useContext(favouriteContext);
+  const { favourite, addProductToFavourite, checkItemInFavourite } = useContext(FavouriteContext); // Добавлен checkItemInFavourite
 
   const [checkInCart, setCheckInCart] = useState(checkItemInCart(item.id));
-  const [checkInFavourite, setCheckInFavourite] = useState(checkItemInFavourite(item.id));
+  const [checkInFavourite, setCheckInFavourite] = useState(checkItemInFavourite(item.id)); // Используйте функцию checkItemInFavourite
 
   useEffect(() => {
     setCheckInCart(checkItemInCart(item.id));
@@ -103,3 +103,4 @@ const Tanks = ({ item }) => {
 };
 
 export default Tanks;
+

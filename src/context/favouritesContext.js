@@ -1,5 +1,7 @@
+// В файле favouritesContext.js
 import React, { useReducer } from "react";
-export const favouriteContext = React.createContext();
+
+export const FavouriteContext = React.createContext();
 
 const INIT_STATE = {
   favourite: {},
@@ -19,74 +21,65 @@ const reducer = (state = INIT_STATE, action) => {
   }
 };
 
-
 const FavouriteContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
+
   function addProductToFavourite(product) {
     let favourite = JSON.parse(localStorage.getItem("favourites"));
     if (!favourite) {
-        favourite = {
-        products: [],
-      };
+      favourite = { products: [] };
       localStorage.setItem("favourites", JSON.stringify(favourite));
     }
-    let newProduct = {
-      item: product,
-      count: 1,
-    };
+    let newProduct = { item: product, count: 1 };
     let filteredFavourite = favourite.products.filter(
       (item) => item.item.id === product.id
     );
     if (filteredFavourite.length > 0) {
-        favourite.products = favourite.products.filter(
+      favourite.products = favourite.products.filter(
         (item) => item.item.id !== product.id
       );
     } else {
-        favourite.products.push(newProduct);
+      favourite.products.push(newProduct);
     }
     localStorage.setItem("favourites", JSON.stringify(favourite));
-
-    getFavourite(); //автоматически обновляет корзину
+    getFavourite();
   }
+
   function getFavourite() {
     let favourite = JSON.parse(localStorage.getItem("favourites"));
     if (!favourite) {
-        favourite = {
-        products: [],
-      };
+      favourite = { products: [] };
     }
     dispatch({
       type: "GET_FAVOURITE",
       payload: favourite,
     });
   }
+
   function deleteFromFavourite(id) {
     let favourite = JSON.parse(localStorage.getItem("favourites"));
     if (!favourite) {
-        favourite = {
-        products: [],
-      };
+      favourite = { products: [] };
     }
-    favourite.products = favourite.products.filter((item) => item.item.id !== id);
+    favourite.products = favourite.products.filter(
+      (item) => item.item.id !== id
+    );
     localStorage.setItem("favourites", JSON.stringify(favourite));
     getFavourite();
   }
 
   function checkItemInFavourite(id) {
-    //проверка добавлен ли товар
     let favourite = JSON.parse(localStorage.getItem("favourites"));
     if (!favourite) {
-        favourite = {
-        products: [],
-      };
+      favourite = { products: [] };
     }
-    let filteredFavourite = favourite.products.filter((item) => item.item.id === id);
-    return filteredFavourite.length > 0 ? true : false; // проверка есть ли такой элем в корзине
+    let filteredFavourite = favourite.products.filter(
+      (item) => item.item.id === id
+    );
+    return filteredFavourite.length > 0;
   }
 
-
   function changeProductCount(count, id) {
-    //количество элементов в корзине
     if (count <= 0) {
       count = 1;
     }
@@ -102,7 +95,7 @@ const FavouriteContextProvider = ({ children }) => {
   }
 
   return (
-    <favouriteContext.Provider
+    <FavouriteContext.Provider
       value={{
         favourite: state.favourite,
         favouriteLength: state.favouriteLength,
@@ -114,7 +107,7 @@ const FavouriteContextProvider = ({ children }) => {
       }}
     >
       {children}
-    </favouriteContext.Provider>
+    </FavouriteContext.Provider>
   );
 };
 

@@ -1,10 +1,12 @@
+// context/likesContext.js
 import axios from "axios";
-import React, { useReducer } from "react";
-const APIlikes = "http://localhost:8000/apilikes"
+import React, { useReducer, useEffect } from "react";
+
+const APIlikes = "http://localhost:8000/apilikes";
 export const likesContext = React.createContext();
 
 const INIT_STATE = {
-  likes: null,
+  likes: JSON.parse(localStorage.getItem("likes")) || [], // Загрузка из localStorage
   likesToEdit: null,
 };
 
@@ -22,58 +24,43 @@ const reducer = (state = INIT_STATE, action) => {
 const LikesContextProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
-  // ! CREATE
-
+  // Функция для добавления лайка
   const addLike = async (owner, productId, rate) => {
     try {
-      let likes = {
-        owner,
-        productId,
-        rate,
-      };
-      const response = await axios.post(APIlikes, likes);
-      getLikes(productId);
+      let like = { owner, productId, rate };
+      await axios.post(APIlikes, like);
+      getLikes(productId); // Обновите список лайков после добавления
     } catch (e) {
       console.log(e);
     }
   };
 
-  // ! READ
+  // Функция для редактирования лайка
+  const saveEditedLikes = async (editedLike) => {
+    try {
+      await axios.patch(`${APIlikes}/${editedLike.id}`, editedLike);
+      getLikes(editedLike.productId); // Обновите список лайков после редактирования
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
+  // Функция для получения лайков
   const getLikes = async (productId) => {
     try {
-      const response = await axios(APIlikes + "?productId=" + productId);
-      let action = {
-        type: "GET_LIKES",
-        payload: response.data,
-      };
-      dispatch(action);
+      const response = await axios(`${APIlikes}?productId=${productId}`);
+      dispatch({ type: "GET_LIKES", payload: response.data });
+      localStorage.setItem("likes", JSON.stringify(response.data)); // Сохранение в localStorage
     } catch (e) {
       console.log(e);
     }
   };
 
-  // ! UPDATE
-
+  // Функция для получения лайка для редактирования
   const getLikesToEdit = async (id) => {
     try {
       const response = await axios(`${APIlikes}/${id}`);
-      let action = {
-        type: "GET_LIKES_TO_EDIT",
-        payload: response.data,
-      };
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const saveEditedLikes = async (editedLikes) => {
-    try {
-      const response = await axios.patch(
-        `${APIlikes}/${editedLikes.id}`,
-        editedLikes
-      );
-      getLikes(editedLikes.productId);
+      dispatch({ type: "GET_LIKES_TO_EDIT", payload: response.data });
     } catch (e) {
       console.log(e);
     }
@@ -82,10 +69,10 @@ const LikesContextProvider = (props) => {
   return (
     <likesContext.Provider
       value={{
-        addLike: addLike,
-        getLikes: getLikes,
-        getLikesToEdit: getLikesToEdit,
-        saveEditedLikes: saveEditedLikes,
+        addLike,
+        saveEditedLikes,
+        getLikes,
+        getLikesToEdit,
         likes: state.likes,
         likesToEdit: state.likesToEdit,
       }}

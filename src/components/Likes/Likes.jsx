@@ -1,4 +1,4 @@
-import { HeartFilled } from "@ant-design/icons/lib/icons";
+import { HeartFilled } from "@ant-design/icons";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { likesContext } from "../../context/likesContext";
@@ -10,7 +10,6 @@ const Likes = () => {
 
   useEffect(() => {
     getLikes(id);
-    // Замените этот вызов на получение email откуда-то
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {
       setEmail(storedUser.email); // Обновите это в зависимости от структуры данных
@@ -52,7 +51,7 @@ const Likes = () => {
   };
 
   return (
-    <>
+    <div>
       {likes ? (
         <div>
           <HeartFilled
@@ -71,7 +70,7 @@ const Likes = () => {
       ) : (
         <h2>Loading...</h2>
       )}
-    </>
+    </div>
   );
 };
 

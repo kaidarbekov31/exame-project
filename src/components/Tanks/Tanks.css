@@ -1,23 +1,35 @@
-.card:hover {
-  box-shadow: 3px 4px 5px 5px darkgray;
-  transition: 0.3s;
-}
-.c {
-  background-image: url(https://t4.ftcdn.net/jpg/02/81/65/35/360_F_281653591_LZmmypLdZaFsqOsJBsxilj3OYdINzh2B.jpg);
-  background-size: cover;
-}
-.card-inner {
-  width: 24rem;
-  border: none;
+.card {
+  /* Эффект наведения */
+  transition: box-shadow 0.3s ease;
 }
 
-@media all and (max-width: 425px){
-    .card-inner{
-        width: 20rem;
-    }
+.card:hover {
+  box-shadow: 3px 4px 5px darkgray;
 }
-@media all and (max-width: 365px){
-    .card-inner{
-        width: 15rem;
-    }
+
+.c {
+  /* Фоновое изображение */
+  background-image: url(https://t4.ftcdn.net/jpg/02/81/65/35/360_F_281653591_LZmmypLdZaFsqOsJBsxilj3OYdINzh2B.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card-inner {
+  /* Основные стили карточки */
+  width: 24rem;
+  border: none;
+  transition: width 0.3s ease;
+}
+
+@media all and (max-width: 425px) {
+  .card-inner {
+    width: 20rem;
+  }
+}
+
+@media all and (max-width: 365px) {
+  .card-inner {
+    width: 15rem;
+  }
 }

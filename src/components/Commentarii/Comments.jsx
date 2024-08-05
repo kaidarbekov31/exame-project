@@ -6,28 +6,27 @@ import {
 } from "@ant-design/icons/lib/icons";
 import { Tooltip } from "antd";
 import React, { useContext, useState } from "react";
-import { commentContext } from "../../context/commentsContext";
+import { CommentContext } from "../../context/commentsContext"; // Исправлено имя импорта
 import moment from "moment";
 import "./Comments.css";
 import { timeSince } from "../helpers/calcTimeLeft";
 
 const Comments = ({ item, id }) => {
-
-  const { deleteComment } = useContext(commentContext);
-  const [email] = useState(false);
-  const [likes, setLikes] = useState(0);
-  const [dislikes, setDislikes] = useState(0);
+  const { deleteComment } = useContext(CommentContext); // Исправлено имя контекста
+  const [email] = useState(false); // Проверьте, что это значение актуально
+  const [likes, setLikes] = useState(item.newComment.likes || 0); // Изначальное количество лайков
+  const [dislikes, setDislikes] = useState(item.newComment.dislikes || 0); // Изначальное количество дизлайков
   const [action, setAction] = useState(null);
 
   const like = () => {
-    setLikes(1);
-    setDislikes(0);
+    setLikes(prev => prev + 1); // Увеличение количества лайков
+    setDislikes(0); // Сброс дизлайков
     setAction("liked");
   };
 
   const dislike = () => {
-    setLikes(0);
-    setDislikes(1);
+    setLikes(0); // Сброс лайков
+    setDislikes(prev => prev + 1); // Увеличение количества дизлайков
     setAction("disliked");
   };
 
@@ -47,7 +46,7 @@ const Comments = ({ item, id }) => {
         className="d-flex flex-column justify-content-between"
       >
         <div
-          className="d-flex  justify-content-start"
+          className="d-flex justify-content-start"
           style={{ width: "100%" }}
         >
           <img width="50px" src="https://joeschmoe.io/api/v1/random" alt="" />
@@ -56,16 +55,16 @@ const Comments = ({ item, id }) => {
             style={{ width: "100%" }}
           >
             <h6>{item.newComment.email}</h6>
-            <Tooltip title={moment().format("YYYY-MM-DD HH:mm:ss")}>
+            <Tooltip title={moment(item.newComment.createdAtMs).format("YYYY-MM-DD HH:mm:ss")}>
               <span style={{ color: "grey", fontSize: "18px" }}>
-                {timeSince(item.newComment.createdAtMs)} назад{" "}
+                {timeSince(item.newComment.createdAtMs)} назад
               </span>
             </Tooltip>
           </div>
         </div>
-        <div className="d-flex justify-content-between align-items-center" >
+        <div className="d-flex justify-content-between align-items-center">
           <h5 style={{ color: "black" }}>{item.newComment.word}</h5>
-          {email === item.newComment.email ? (
+          {email === item.newComment.email && (
             <button
               style={{
                 height: "40px",
@@ -80,7 +79,7 @@ const Comments = ({ item, id }) => {
             >
               delete
             </button>
-          ) : null}
+          )}
         </div>
         <div>
           <Tooltip key="comment-basic-like" title="Like">
