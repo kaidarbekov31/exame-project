@@ -1,70 +1,55 @@
+// components/Auth/Login.jsx
 import React, { useState } from "react";
+import { useAuth } from "../../context/AuthContent";
 import { Link } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
-  const [hasAccount] = useState();
+  const { login } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    login(email, password);
+  };
 
   return (
     <section className="login">
-      <div className="login-container">
+      <form className="login-container" onSubmit={handleSubmit}>
         <label className="auth-label">Email</label>
         <input
           className="auth-input"
-          type="text"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           autoFocus
           required
         />
-   
 
         <label className="auth-label">Password</label>
         <input
           className="auth-input"
           type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           autoFocus
           required
         />
-       
 
         <div className="btn-container">
-          {hasAccount ? (
-            <>
-              {" "}
-              <Link to="/">
-                <button className="auth-btn" >
-                  Sign in
-                </button>
-              </Link>
-              <Link to="/forgot">
-                <p className="forgot">Забыли пароль?</p>
-              </Link>
-              <p className="auth-text">
-                Don't have an account?
-                <span
-                  className="auth-span"
-                >
-                  Sign up
-                </span>
-              </p>
-            </>
-          ) : (
-            <>
-              <Link to="/">
-                <button className="auth-btn">
-                  Sign up
-                </button>
-              </Link>
-
-              <p className="auth-text">
-                Have an account?
-                <span
-                  className="auth-span"
-                >
-                  Sign in
-                </span>
-              </p>
-            </>
-          )}
+          <button className="auth-btn" type="submit">
+            Sign in
+          </button>
+          <Link to="/forgot">
+            <p className="forgot">Забыли пароль?</p>
+          </Link>
+          <p className="auth-text">
+            Don't have an account?
+            <Link to="/register">
+              <span className="auth-span">Sign up</span>
+            </Link>
+          </p>
         </div>
         <button
           style={{
@@ -81,7 +66,7 @@ const Login = () => {
           />
           Войти с помощью google аккаунта
         </button>
-      </div>
+      </form>
     </section>
   );
 };

@@ -1,7 +1,9 @@
+// components/Routing.jsx
 import React, { useState } from "react";
 import { Navigate, Route, Routes } from "react-router";
 import Add from "./components/Add/Add";
 import Login from "./components/Auth/Login";
+import Register from "./components/Auth/Register";
 import Cart from "./components/Cart/Cart";
 import Details from "./components/Details/Details";
 import Edit from "./components/Edit/Edit";
@@ -40,24 +42,29 @@ const Routing = () => {
       id: 5,
     },
     {
+      link: "/register",
+      element: <Register />,
+      id: 6,
+    },
+    {
       link: "/cart",
       element: <Cart />,
-      id: 6,
+      id: 7,
     },
     {
       link: "/favourites",
       element: <Favourites />,
-      id: 7,
+      id: 8,
     },
     {
       link: "/invoic",
       element: <Invoic />,
-      id: 8,
+      id: 9,
     },
     {
       link: "/forgot",
       element: <Forgot />,
-      id: 9,
+      id: 10,
     },
   ];
 
@@ -70,11 +77,12 @@ const Routing = () => {
   return (
     <Routes>
       {routes.map((item) => (
-        <Route path={item.link} element={item.element} />
+        <Route key={item.id} path={item.link} element={item.element} />
       ))}
       {user
         ? admin.map((item) => (
             <Route
+              key={item.link}
               path={item.link}
               element={
                 user.email === "ajdarbekovkudajberdi@gmail.com" ? (

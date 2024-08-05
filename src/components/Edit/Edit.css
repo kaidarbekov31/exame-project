@@ -1,0 +1,39 @@
+.edit-container {
+    background-image: url(https://izaktv.pl/wp-content/uploads/2020/06/WoT_PC_Key_art_1.9.1_Berlin_map.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .edit-form {
+    border: 4px solid grey;
+    border-radius: 5%;
+    background-color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+    padding: 20px;
+    min-width: 320px;
+  }
+  
+  .form-title {
+    color: orangered;
+  }
+  
+  .form-input {
+    height: 40px;
+    margin: 10px 0;
+    width: 90%;
+  }
+  
+  .save-button {
+    background: orange;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+  }
+  

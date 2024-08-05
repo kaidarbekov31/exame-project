@@ -1,128 +1,127 @@
-import React, { useContext } from "react";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 import { TanksContext } from "../../context/TanksContext";
 import { useNavigate } from "react-router-dom";
 
 const Add = () => {
+  const navigate = useNavigate();
+  const { createTank } = useContext(TanksContext);
 
-const navigate = useNavigate();
+  const [newTank, setNewTank] = useState({
+    name: "",
+    type: "",
+    country: "",
+    image: "",
+    price: "",
+    description: "",
+  });
 
-const [newTank, setNewTank] = useState({
-  name: "",
-  type: "",
-  country: "",
-  image: "",
-  price: "",
-  description: "",
-  comments: "",
-});
-
-const { createTank } = useContext(TanksContext);
-
-function handleValues(e) {
-  let values = {
-    ...newTank,
-    [e.target.name]: e.target.value,
+  const handleValues = (e) => {
+    const { name, value } = e.target;
+    setNewTank((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
   };
-  setNewTank(values);
-}
 
-function checkValues() {
-  if (
-    !newTank.name ||
-    !newTank.type ||
-    !newTank.image ||
-    !newTank.country ||
-    !newTank.price ||
-    !newTank.description
-  ) {
-    alert("Заполните поля!");
-    return;
-  } else {
+  const checkValues = () => {
+    const { name, type, country, image, price, description } = newTank;
+    if (!name || !type || !country || !image || !price || !description) {
+      alert("Заполните все поля!");
+      return;
+    }
+
     createTank(newTank);
     navigate("/tanks");
-  }
-}
+  };
 
   return (
     <div
       className="d-flex justify-content-center align-items-center"
       style={{
-        backgroundImage:
-          "url(https://cdn.igromania.ru/mnt/news/6/9/4/3/0/6/87235/aff8b0534843c376_1920xH.jpg)",
+        backgroundImage: "url(https://cdn.igromania.ru/mnt/news/6/9/4/3/0/6/87235/aff8b0534843c376_1920xH.jpg)",
         backgroundSize: "cover",
         backgroundAttachment: "fixed",
+        minHeight: "100vh",
+        padding: "20px"
       }}
     >
       <div
         style={{
-          border: "grey solid 4px",
+          border: "4px solid grey",
           borderRadius: "5%",
-          marginTop: "120px",
-          marginBottom: "100px",
-          backgroundColor: "rgba(0,0,0,0.4)",
-          minWidth: '320px'
+          backgroundColor: "rgba(0,0,0,0.6)",
+          padding: "20px",
+          minWidth: '320px',
+          width: '100%',
+          maxWidth: '600px'
         }}
-        className="col-4 d-flex flex-column align-items-center"
+        className="d-flex flex-column align-items-center"
       >
         <h3 style={{ color: "white" }}>Форма для добавления танка</h3>
         <input
           onChange={handleValues}
-          style={{ height: "40px" }}
+          style={{ height: "40px", margin: "10px" }}
           type="text"
           placeholder="Введите имя"
           name="name"
-          className="m-3 col-9"
+          value={newTank.name}
+          className="form-control"
         />
         <input
           onChange={handleValues}
-          style={{ height: "40px" }}
+          style={{ height: "40px", margin: "10px" }}
           type="text"
           placeholder="Введите тип"
           name="type"
-          className="m-3 col-9"
+          value={newTank.type}
+          className="form-control"
         />
         <input
           onChange={handleValues}
-          style={{ height: "40px" }}
+          style={{ height: "40px", margin: "10px" }}
           type="text"
           placeholder="Введите нацию"
           name="country"
-          className="m-3 col-9"
+          value={newTank.country}
+          className="form-control"
         />
         <input
           onChange={handleValues}
-          style={{ height: "40px" }}
+          style={{ height: "40px", margin: "10px" }}
           type="text"
-          placeholder="Введите url для картинки"
+          placeholder="Введите URL для картинки"
           name="image"
-          className="m-3 col-9"
+          value={newTank.image}
+          className="form-control"
         />
         <input
           onChange={handleValues}
-          style={{ height: "40px" }}
+          style={{ height: "40px", margin: "10px" }}
           type="text"
           placeholder="Введите описание"
           name="description"
-          className="m-3 col-9"
+          value={newTank.description}
+          className="form-control"
         />
         <input
           onChange={handleValues}
-          style={{ height: "40px" }}
+          style={{ height: "40px", margin: "10px" }}
           type="number"
           placeholder="Введите цену"
           name="price"
-          className="m-3 col-9"
+          value={newTank.price}
+          className="form-control"
         />
         <button
-          onClick={() => checkValues()}
+          onClick={checkValues}
           style={{
             background: "orangered",
             color: "white",
             fontSize: "20px",
             fontWeight: "500",
+            marginTop: "20px",
           }}
-          className="btn m-3 col-5"
+          className="btn btn-warning"
         >
           ДОБАВИТЬ
         </button>

@@ -1,15 +1,23 @@
 import { Select } from "antd";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { TanksContext } from "../../context/TanksContext";
+
 const { Option } = Select;
 
 const Filter = ({ type, setType }) => {
-
   const { getTanks, tanks } = useContext(TanksContext);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    getTanks();
-  }, []);
-  
+    const fetchTanks = async () => {
+      await getTanks();
+      setLoading(false);
+    };
+    fetchTanks();
+  }, [getTanks]);
+
+  if (loading) return <div>Loading...</div>;
+
   return (
     <Select
       className="m-1"
@@ -19,13 +27,18 @@ const Filter = ({ type, setType }) => {
       mode="multiple"
       placeholder="Фильтр"
     >
-      {tanks.map((item) => (
-        <Option value={item.type} key={item.id}>
-          {item.type}
-        </Option>
-      ))}
+      {tanks.length > 0 ? (
+        tanks.map((item) => (
+          <Option value={item.type} key={item.id}>
+            {item.type}
+          </Option>
+        ))
+      ) : (
+        <Option disabled>Нет данных</Option>
+      )}
     </Select>
   );
 };
 
 export default Filter;
+

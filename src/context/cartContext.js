@@ -4,7 +4,10 @@ import { calcSubPrice, calcTotalPrice } from "../helpers/calcPrice";
 export const cartContext = React.createContext();
 
 const INIT_STATE = {
-  cart: {},
+  cart: {
+    products: [],
+    totalPrice: 0,
+  },
   cartLength: 0,
 };
 
@@ -23,7 +26,8 @@ const reducer = (state = INIT_STATE, action) => {
 
 const CartContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
-  function addProductToCart(product) {
+
+  const getCartFromLocalStorage = () => {
     let cart = JSON.parse(localStorage.getItem("cart"));
     if (!cart) {
       cart = {
@@ -32,6 +36,15 @@ const CartContextProvider = ({ children }) => {
       };
       localStorage.setItem("cart", JSON.stringify(cart));
     }
+    return cart;
+  };
+
+  const saveCartToLocalStorage = (cart) => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
+
+  function addProductToCart(product) {
+    let cart = getCartFromLocalStorage();
     let newProduct = {
       item: product,
       count: 1,
@@ -47,57 +60,39 @@ const CartContextProvider = ({ children }) => {
     } else {
       cart.products.push(newProduct);
     }
-    console.log(cart);
     cart.totalPrice = calcTotalPrice(cart.products);
-    localStorage.setItem("cart", JSON.stringify(cart));
+    saveCartToLocalStorage(cart);
     getCart(); //автоматически обновляет корзину
   }
+
   function getCart() {
-    let cart = JSON.parse(localStorage.getItem("cart"));
-    if (!cart) {
-      cart = {
-        products: [],
-        totalPrice: 0,
-      };
-    }
+    let cart = getCartFromLocalStorage();
     cart.totalPrice = calcTotalPrice(cart.products);
     dispatch({
       type: "GET_CART",
       payload: cart,
     });
   }
+
   function deleteFromCart(id) {
-    let cart = JSON.parse(localStorage.getItem("cart"));
-    if (!cart) {
-      cart = {
-        products: [],
-        totalPrice: 0,
-      };
-    }
+    let cart = getCartFromLocalStorage();
     cart.products = cart.products.filter((item) => item.item.id !== id);
-    localStorage.setItem("cart", JSON.stringify(cart));
+    cart.totalPrice = calcTotalPrice(cart.products);
+    saveCartToLocalStorage(cart);
     getCart();
   }
 
   function checkItemInCart(id) {
-    //проверка добавлен ли товар
-    let cart = JSON.parse(localStorage.getItem("cart"));
-    if (!cart) {
-      cart = {
-        products: [],
-        totalPrice: 0,
-      };
-    }
+    let cart = getCartFromLocalStorage();
     let filteredCart = cart.products.filter((item) => item.item.id === id);
-    return filteredCart.length > 0 ? true : false; // проверка есть ли такой элем в корзине
+    return filteredCart.length > 0;
   }
 
   function changeProductCount(count, id) {
-    //количество элементов в корзине
     if (count <= 0) {
       count = 1;
     }
-    let cart = JSON.parse(localStorage.getItem("cart"));
+    let cart = getCartFromLocalStorage();
     cart.products = cart.products.map((item) => {
       if (item.item.id === id) {
         item.count = count;
@@ -106,7 +101,7 @@ const CartContextProvider = ({ children }) => {
       return item;
     });
     cart.totalPrice = calcTotalPrice(cart.products);
-    localStorage.setItem("cart", JSON.stringify(cart));
+    saveCartToLocalStorage(cart);
     getCart();
   }
 

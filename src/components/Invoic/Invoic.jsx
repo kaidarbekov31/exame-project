@@ -7,25 +7,20 @@ import Logo from "../image/logo-3.png";
 
 const Invoic = () => {
   const [user, setUser] = useState(null);
-  const [email] = useState();
   const { cart } = useContext(cartContext);
+
   useEffect(() => {
-    getCart(user);
+    getCart();
   }, []);
 
-  function getCart(user) {
-    let cart = JSON.parse(localStorage.getItem("Cartinfo"));
-    user = cart;
-    setUser(user);
-    console.log(cart);
+  function getCart() {
+    let cartData = JSON.parse(localStorage.getItem("Cartinfo"));
+    setUser(cartData);
   }
 
   function deleteFromCart() {
-    JSON.parse(localStorage.getItem("Cartinfo"));
-    let cart2 = {};
-    localStorage.setItem("Cartinfo", JSON.stringify(cart2));
-
-    localStorage.removeItem("cart");
+    localStorage.removeItem("Cartinfo");
+    setUser(null); // Очистите состояние корзины
   }
 
   return (
@@ -47,57 +42,61 @@ const Invoic = () => {
         <div className="check_inner">
           <img width="100px" src={Logo} alt="logo" />
           <div>
-            <span className="check-words">User's email : </span>
-            <span style={{ color: "black" }}>{email}</span>
+            <span className="check-words">User's email: </span>
+            <span style={{ color: "black" }}>{user?.email || 'N/A'}</span>
           </div>
           <div>
-            <span className="check-words">Username : </span>
-            <span style={{ color: "black" }}>{user?.username}</span>
+            <span className="check-words">Username: </span>
+            <span style={{ color: "black" }}>{user?.username || 'N/A'}</span>
           </div>
           <div>
-            <span className="check-words">City : </span>
-            <span style={{ color: "black" }}>{user?.provinсe}</span>
+            <span className="check-words">City: </span>
+            <span style={{ color: "black" }}>{user?.city || 'N/A'}</span>
           </div>
           <div>
-            <span className="check-words">Street : </span>
-            <span style={{ color: "black" }}>{user?.street}</span>
-          </div>
-          <div>
-            <span className="check-words">Email : </span>
-            <span style={{ color: "black" }}>{user?.email}</span>
+            <span className="check-words">Street: </span>
+            <span style={{ color: "black" }}>{user?.street || 'N/A'}</span>
           </div>
           <div className="ch">
             <div>
-              <span className="check-words">Name of product </span>
-              {cart?.products?.map((product) => {
-                return <li>{product.item.name}</li>;
-              })}
+              <span className="check-words">Name of product</span>
+              <ul>
+                {cart?.products?.map((product, index) => (
+                  <li key={index}>{product.item.name}</li>
+                ))}
+              </ul>
             </div>
             <div>
-              <span className="check-words">Price </span>
-              {cart?.products?.map((product) => {
-                return <li>{product.item.price} $</li>;
-              })}
+              <span className="check-words">Price</span>
+              <ul>
+                {cart?.products?.map((product, index) => (
+                  <li key={index}>{product.item.price} $</li>
+                ))}
+              </ul>
             </div>
             <div>
-              <span className="check-words">Count </span>
-              {cart?.products?.map((product) => {
-                return <li>{product.count}</li>;
-              })}
+              <span className="check-words">Count</span>
+              <ul>
+                {cart?.products?.map((product, index) => (
+                  <li key={index}>{product.count}</li>
+                ))}
+              </ul>
             </div>
             <div>
-              <span className="check-words">Sum </span>
-              {cart?.products?.map((product) => {
-                return <li>{product.subPrice + "  $"}</li>;
-              })}
+              <span className="check-words">Sum</span>
+              <ul>
+                {cart?.products?.map((product, index) => (
+                  <li key={index}>{product.subPrice} $</li>
+                ))}
+              </ul>
             </div>
           </div>
           <div className="total">
-            <h3 className="check-words">TOTAL :</h3>
-            <strong>{cart?.totalPrice + "  $"}</strong>
+            <h3 className="check-words">TOTAL:</h3>
+            <strong>{cart?.totalPrice} $</strong>
           </div>
           <h1 className="thanks" style={{ color: "red" }}>
-            <i> Thanks for shopping!</i>
+            <i>Thanks for shopping!</i>
           </h1>
         </div>
       </div>
@@ -118,3 +117,4 @@ const Invoic = () => {
 };
 
 export default Invoic;
+

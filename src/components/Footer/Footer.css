@@ -1,34 +1,87 @@
-
-.footer{
+.footer-container {
     width: 100%;
-    height: 50%;
     background-color: black;
-    text-align: center;
-}
-.footer_text{
     color: white;
 }
-.foot-h1{
+
+.back-to-top {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    background-color: black;
+    cursor: pointer;
+}
+
+.footer-content {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
+
+.footer-header h1 {
     color: white;
     font-size: 60px; 
     margin-bottom: 20px;
 }
-a{
-    text-decoration: none !important;
+
+.footer-header h3 {
+    color: white;
 }
 
-@media all and (max-width: 1013px){
-    .foot-h1{
+.footer-links {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding: 20px 0;
+}
+
+.footer-link-item {
+    text-align: center;
+    color: white;
+}
+
+.footer-link-item img {
+    display: block;
+    margin: 0 auto;
+}
+
+.footer-link-item h5,
+.footer-link-item h6 {
+    margin: 10px 0;
+}
+
+.contact-info {
+    margin-top: 150px;
+}
+
+.email {
+    color: #3399ff;
+    font-size: 22px;
+}
+
+.phone {
+    text-decoration: none;
+    color: #3399ff;
+}
+
+@media all and (max-width: 1013px) {
+    .footer-header h1 {
         font-size: 40px;
     }
 }
-@media all and (max-width: 715px){
-    .foot-h1{
+
+@media all and (max-width: 715px) {
+    .footer-header h1 {
         font-size: 30px;
     }
 }
-@media all and (max-width: 531px){
-    .foot-h1{
+
+@media all and (max-width: 531px) {
+    .footer-header h1 {
         font-size: 20px;
     }
 }

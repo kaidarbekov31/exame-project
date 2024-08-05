@@ -6,36 +6,35 @@ import "./Comments.css";
 import Likes from "../Likes/Likes";
 
 const CommentList = ({ id }) => {
-
   const { getComments, comments, createComment } = useContext(commentContext);
-  const [email] = useState(false)
-  useEffect(() => {
-    getComments(id);
-  }, [id]);
-
+  const [email, setEmail] = useState(false); // Добавлено состояние для email
   const [newComment, setNewComment] = useState({
     word: "",
   });
 
-  function handleValues(e) {
+  useEffect(() => {
+    getComments(id);
+  }, [getComments, id]); // Добавлены зависимости для useEffect
+
+  const handleValues = (e) => {
     const createdAtMs = Date.now();
-    let values = {
+    setNewComment({
       ...newComment,
       [e.target.name]: e.target.value,
       createdAtMs,
       tanksId: id,
-    };
-    setNewComment(values);
-  }
+    });
+  };
 
-  function checkValues() {
+  const checkValues = () => {
     if (!newComment.word) {
       alert("Вы еще ничего не написали!");
       return;
-    } else {
-      createComment(newComment, id);
     }
-  }
+    createComment(newComment, id);
+    setNewComment({ word: "" }); // Очистка поля после добавления комментария
+  };
+
   return (
     <div
       style={{
@@ -53,22 +52,22 @@ const CommentList = ({ id }) => {
         {email ? <Likes /> : null}
       </div>
       <div className="items-list">
-        {comments
-          ? comments
-            .sort((a, b) => b.newComment.createdAtMs - a.newComment.createdAtMs)
-            .map((item) => <Comments id={id} key={item.id} item={item} />)
-          : null}
+        {comments &&
+          comments
+            .sort((a, b) => b.createdAtMs - a.createdAtMs)
+            .map((item) => <Comments id={id} key={item.id} item={item} />)}
       </div>
-      {email ? (
+      {email && (
         <div style={{ display: "flex", height: "60px" }}>
           <Input
             id="comment"
             onChange={handleValues}
             name="word"
             placeholder="Enter text..."
+            value={newComment.word}
           />
           <button
-            onClick={() => checkValues()}
+            onClick={checkValues}
             style={{
               background: "#3399ff",
               borderRadius: "5px",
@@ -79,7 +78,7 @@ const CommentList = ({ id }) => {
             Add comment
           </button>
         </div>
-      ) : null}
+      )}
     </div>
   );
 };

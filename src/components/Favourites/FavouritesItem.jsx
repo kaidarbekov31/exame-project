@@ -1,17 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import { List } from "antd";
-import { favouriteContext } from "../../context/favouritesContext";
 import { Button } from "react-bootstrap";
+import { favouriteContext } from "../../context/favouritesContext";
 import { cartContext } from "../../context/cartContext";
-import "./Fav.css"
+import "./Fav.css";
+
 const FavouritesItem = ({ item }) => {
   const { addProductToCart, checkItemInCart } = useContext(cartContext);
-  const [checkInCart, setCheckInCart] = useState(checkItemInCart(item.id));
+  const [checkInCart, setCheckInCart] = useState(false);
+
   useEffect(() => {
     setCheckInCart(checkItemInCart(item.item.id));
-  });
+  }, [item.item.id, checkItemInCart]);
 
   const { deleteFromFavourite } = useContext(favouriteContext);
+
   return (
     <div>
       <List.Item

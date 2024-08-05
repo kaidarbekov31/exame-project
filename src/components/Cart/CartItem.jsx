@@ -5,21 +5,20 @@ import { Button } from "react-bootstrap";
 
 const CartItem = ({ item }) => {
   const { deleteFromCart, changeProductCount } = useContext(cartContext);
+
   return (
     <List.Item
       key={item.id}
-      extra={<img width={272} alt="img" src={item.item.image} />}
+      extra={<img width={272} alt="item" src={item.item.image} />}
     >
       <List.Item.Meta
         title={
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginTop: "30px",
-            }}
-          >
+          <div style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginTop: "30px",
+          }}>
             <div>
               <h3>{item.item.name}</h3>
               <h4>{item.item.type}</h4>
@@ -32,22 +31,18 @@ const CartItem = ({ item }) => {
           <>
             <div>{item.item.description}</div>
 
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "100%",
-                marginTop: "20px",
-              }}
-            >
+            <div style={{
+              display: "flex",
+              justifyContent: "space-between",
+              width: "100%",
+              marginTop: "20px",
+            }}>
               <div>
-                <h4>Количество</h4>
+                <h4>Quantity</h4>
                 <Button
                   className="m-1"
                   variant="outline-primary"
-                  onClick={() =>
-                    changeProductCount(item.count - 1, item.item.id)
-                  }
+                  onClick={() => changeProductCount(item.count - 1, item.item.id)}
                 >
                   -
                 </Button>
@@ -58,15 +53,13 @@ const CartItem = ({ item }) => {
                 />
                 <Button
                   variant="outline-warning"
-                  onClick={() =>
-                    changeProductCount(item.count + 1, item.item.id)
-                  }
+                  onClick={() => changeProductCount(item.count + 1, item.item.id)}
                 >
                   +
                 </Button>
               </div>
               <div>
-                <h4>СубЦена</h4>
+                <h4>Subtotal</h4>
                 <h3>{item.subPrice + " $"}</h3>
               </div>
             </div>
@@ -74,7 +67,7 @@ const CartItem = ({ item }) => {
               variant="danger"
               onClick={() => deleteFromCart(item.item.id)}
             >
-              Удалить с корзины
+              Remove from Cart
             </Button>
           </>
         }

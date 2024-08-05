@@ -1,73 +1,72 @@
-.reg{
-    font-size: 18px;
-    font-weight: 600;
-}
-.div-reg{
-    border: orange solid 3px;
-    width: 155px;
-    height: 50px;
-    border-radius: 5px;
-    color: orange;
-}
-
-.div-reg:hover{
-    background-color: orangered;
-    color: white ;
-}
-
-.logo{
-    filter: brightness(200%)
-}
-.logo:hover{
-    filter: brightness(500%)
-}
-
-.navbar__item{
-    margin: 5px 15px;
-    color: white;
-    font-size: 20px;
-  }
-  .navbar__item:hover{
-      color: orange
-  }
-  .navbar__item-active{
-    margin: 5px 15px;
-    border-bottom: 3px solid orange;
-    color: white;
-    font-size: 20px;
-  }
-  .navbar__item-active:hover{
-      color: orange;
-  }
-  
-.shop-icon{
-    color:white;
-    font-size: 40px;
-}
-.shop-icon:hover{
-    color: orange;
-}
-
-.icons{
+/* Header.css */
+.navbar {
+    height: 70px;
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 0;
+    z-index: 5;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-}
-@media all and (max-width: 410px){
-    .div-reg{
-        width: 70px;
-    }
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
-@media all and (max-width: 375px){
-    .logo{
-        width: 45px;
-    }
-    .shop-icon{
-        font-size: 30px;
-    }
-    .icons{
-        display: flex;
-        justify-content: flex-start;
-    }
+.logo {
+    height: 65px;
+}
+
+.route {
+    display: flex;
+    align-items: center;
+}
+
+.navbar__item {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+.navbar__item-active {
+    color: yellow;
+    font-weight: bold;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    width: auto; /* Изменено с 250px на auto для более гибкого размера */
+}
+
+.shop-icon {
+    font-size: 24px;
+    margin-right: 20px;
+    color: white; /* Убедитесь, что иконки видны */
+}
+
+.div-reg {
+    cursor: pointer;
+    background: #007bff; /* Яркий синий цвет для кнопки */
+    border-radius: 5px;
+    padding: 10px 20px; /* Увеличены размеры кнопки */
+    margin-right: 10px;
+    color: white; /* Текст кнопки белый для контраста */
+    font-size: 16px; /* Увеличен размер шрифта */
+    text-align: center; /* Центрирование текста */
+    border: none; /* Удаление границы */
+    transition: background 0.3s ease; /* Плавный переход цвета фона */
+}
+
+.div-reg:hover {
+    background: #0056b3; /* Более темный оттенок синего при наведении */
+}
+
+.div-reg:active {
+    background: #004080; /* Еще более темный оттенок синего при нажатии */
+}
+
+.div-reg:focus {
+    outline: none; /* Убираем стандартный контур при фокусе */
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3); /* Добавляем тень при фокусе для улучшения видимости */
 }

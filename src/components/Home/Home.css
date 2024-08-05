@@ -1,4 +1,4 @@
-.beginer {
+/* .beginer {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -278,6 +278,223 @@ p {
     }
 
     .before-scrin>p {
+        font-size: 20px;
+    }
+} */
+
+/* Общие стили */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #fff;
+}
+
+/* Убедитесь, что элемент <video> не перекрывает другие элементы */
+video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Общие стили для блоков */
+section {
+    padding: 0 15px;
+}
+
+/* .beginer */
+.beginer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 75px;
+}
+
+/* Параграфы */
+p {
+    font-size: 30px;
+    line-height: 32px;
+    color: #e9e2bf;
+    text-shadow: 0 3px 6px rgb(0 0 0 / 84%);
+    margin: 0 auto 36px;
+    max-width: 80%;
+}
+
+/* .word */
+.word {
+    margin-top: -1px;
+    background-image: url(https://eu-wotp.wgcdn.co/static/5.96.0_9090e7/wotp_static/img/about_game/frontend/scss/about-info/img/bg-d.webp);
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.word > h2 {
+    font-size: 145px;
+    color: #e9e2bf;
+    font-weight: bold;
+}
+
+/* .sec */
+.sec {
+    margin-top: 200px;
+    padding-top: 25px;
+    text-align: center;
+    width: 100%;
+    height: 180px;
+    background-image: url(https://eu-wotp.wgcdn.co/static/5.96.0_9090e7/wotp_static/img/about_game/frontend/scss/about-info/img/ribbon.webp);
+}
+
+.sec h3 {
+    color: palegoldenrod !important;
+}
+
+/* .before-scrin */
+.before-scrin {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.before-scrin > h1 {
+    color: white;
+}
+
+.before-scrin > p {
+    color: palegoldenrod;
+    font-size: 28px;
+}
+
+/* .scrin */
+.scrin {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* .nationality */
+.nationality {
+    background-image: url(https://eu-wotp.wgcdn.co/static/5.96.0_9090e7/wotp_static/img/core/frontend/scss/common/blocks/about-technic/img/bg-nation-d.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 950px;
+    text-align: center;
+}
+
+.nationality > h1 {
+    color: ivory;
+    padding-top: 50px;
+}
+
+/* Стили для элементов с флагами */
+.item1, .item2, .item3, .item4, .item5, .item6, .item7, .item8, .item9, .item10, .item11 {
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.item1 { background-image: url(https://eu-wotp.wgcdn.co/static/5.96.0_9090e7/wotp_static/img/core/frontend/scss/common/blocks/about-technic/img/flags/ussr.webp); }
+.item2 { background-image: url(https://eu-wotp.wgcdn.co/static/5.96.0_9090e7/wotp_static/img/core/frontend/scss/common/blocks/about-technic/img/flags/germany.webp); }
+.item3 { background-image: url(https://eu-wotp.wgcdn.co/static/5.96.0_9090e7/wotp_static/img/core/frontend/scss/common/blocks/about-technic/img/flags/usa.webp); }
+.item4 { background-image: url(https://eu-wotp.wgcdn.co/static/5.96.0_9090e7/wotp_static/img/core/frontend/scss/common/blocks/about-technic/img/flags/france.webp); }
+.item5 { background-image: url(https://eu-wotp.wgcdn.co/static/5.96.0_9090e7/wotp_static/img/core/frontend/scss/common/blocks/about-technic/img/flags/uk.webp); }
+.item6 { background-image: url(https://eu-wotp.wgcdn.co/static/5.96.0_9090e7/wotp_static/img/core/frontend/scss/common/blocks/about-technic/img/flags/czech.webp); }
+.item7 { background-image: url(https://eu-wotp.wgcdn.co/static/5.96.0_9090e7/wotp_static/img/core/frontend/scss/common/blocks/about-technic/img/flags/china.webp); }
+.item8 { background-image: url(https://eu-wotp.wgcdn.co/static/5.96.0_9090e7/wotp_static/img/core/frontend/scss/common/blocks/about-technic/img/flags/japan.webp); }
+.item9 { background-image: url(https://eu-wotp.wgcdn.co/static/5.96.0_9090e7/wotp_static/img/core/frontend/scss/common/blocks/about-technic/img/flags/sweden.webp); }
+.item10 { background-image: url(https://eu-wotp.wgcdn.co/static/5.96.0_9090e7/wotp_static/img/core/frontend/scss/common/blocks/about-technic/img/flags/poland.webp); }
+.item11 { background-image: url(https://eu-wotp.wgcdn.co/static/5.96.0_9090e7/wotp_static/img/core/frontend/scss/common/blocks/about-technic/img/flags/italy.webp); }
+
+/* Респонсивный дизайн */
+@media all and (max-width: 1325px) {
+    .beginer > p {
+        display: none;
+    }
+}
+
+@media all and (max-width: 1175px) {
+    .word > h2 {
+        font-size: 100px;
+    }
+}
+
+@media all and (max-width: 875px) {
+    .word > h2 {
+        font-size: 70px;
+    }
+}
+
+@media all and (max-width: 790px) {
+    .nat {
+        font-size: 30px !important;
+    }
+}
+
+@media all and (max-width: 750px) {
+    .desc {
+        font-size: 25px;
+    }
+}
+
+@media all and (max-width: 640px) {
+    .word > h2 {
+        font-size: 50px;
+    }
+
+    .kri {
+        font-size: 20px;
+    }
+
+    .kri-bottom {
+        font-size: 18px;
+    }
+
+    .desc {
+        font-size: 20px;
+    }
+}
+
+@media all and (max-width: 455px) {
+    .word > h2 {
+        font-size: 40px;
+    }
+}
+
+@media all and (max-width: 425px) {
+    .word > h2 {
+        font-size: 30px;
+    }
+
+    .kri {
+        font-size: 15px;
+    }
+
+    .kri-bottom {
+        font-size: 15px;
+    }
+
+    .desc {
+        font-size: 18px;
+    }
+}
+
+@media all and (max-width: 360px) {
+    .desc {
+        display: none;
+    }
+
+    .before-scrin > p {
         font-size: 20px;
     }
 }

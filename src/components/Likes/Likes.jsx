@@ -3,54 +3,54 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { likesContext } from "../../context/likesContext";
 
-
 const Likes = () => {
-  const { getLikes, likes, addLike, saveEditedLikes } =
-    useContext(likesContext);
-  const params = useParams();
+  const { getLikes, likes, addLike, saveEditedLikes } = useContext(likesContext);
+  const { id } = useParams();
+  const [email, setEmail] = useState(""); // Установите начальное состояние email
+
   useEffect(() => {
-    getLikes(params.id);
-  }, []);
+    getLikes(id);
+    // Замените этот вызов на получение email откуда-то
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      setEmail(storedUser.email); // Обновите это в зависимости от структуры данных
+    }
+  }, [id]);
 
-  const [email] = useState()
-
-  // let user = JSON.parse(localStorage.getItem("user"));
-  let idFeedTemp,
-    checkFeed,
-    myRate = 0;
+  let idFeedTemp;
+  let checkFeed = false;
+  let myRate = 0;
   let count = 0;
   let avgRate = 0;
 
   if (likes) {
-    // console.log(likes);
     likes.forEach((item) => {
-      if (
-        item.productId === params.id &&
-        item.owner === email
-      ) {
+      if (item.productId === id && item.owner === email) {
         idFeedTemp = item.id;
         checkFeed = true;
         myRate = item.rate;
       }
-      if (item.productId === params.id) {
+      if (item.productId === id) {
         count++;
         avgRate += item.rate;
       }
     });
   }
+
   const handleRating = () => {
     if (checkFeed) {
       let editRate = {
         owner: email,
-        productId: params.id,
+        productId: id,
         rate: myRate === 1 ? 0 : 1,
         id: idFeedTemp,
       };
       saveEditedLikes(editRate);
     } else {
-      addLike(email, params.id, 1);
+      addLike(email, id, 1);
     }
   };
+
   return (
     <>
       {likes ? (
@@ -58,7 +58,6 @@ const Likes = () => {
           <HeartFilled
             style={{
               color: myRate === 1 ? "red" : "pink",
-
               fontSize: "30px",
               marginLeft: "10px",
               cursor: "pointer",
@@ -66,13 +65,14 @@ const Likes = () => {
             onClick={handleRating}
           />
           <span style={{ marginLeft: "5px", fontSize: "25px", color: "black" }}>
-            {likes.filter((item) => item.rate === 1).length}
+            {likes.filter((item) => item.productId === id && item.rate === 1).length}
           </span>
         </div>
       ) : (
-        <h2>Load</h2>
+        <h2>Loading...</h2>
       )}
     </>
   );
 };
+
 export default Likes;

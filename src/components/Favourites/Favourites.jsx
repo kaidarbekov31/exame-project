@@ -5,15 +5,24 @@ import FavouritesItem from "./FavouritesItem";
 
 const Favourites = () => {
   const { getFavourite, favourite } = useContext(favouriteContext);
+
   useEffect(() => {
-    getFavourite();
-  }, []);
+    const fetchFavourites = async () => {
+      try {
+        await getFavourite();
+      } catch (error) {
+        console.error('Failed to fetch favourites', error);
+      }
+    };
+    fetchFavourites();
+  }, [getFavourite]);
+
   return (
     <div style={{ paddingTop: "100px", marginBottom: "50px" }}>
-        <List
+      <List
         itemLayout="vertical"
         size="large"
-        dataSource={favourite?.products}
+        dataSource={favourite?.products || []} // Добавляем пустой массив по умолчанию
         renderItem={(item) => <FavouritesItem item={item} />}
       />
     </div>
@@ -21,3 +30,4 @@ const Favourites = () => {
 };
 
 export default Favourites;
+

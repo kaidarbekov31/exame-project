@@ -1,71 +1,122 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { TanksContext } from '../../context/TanksContext';
+import './Edit.css'; // Подключите файл CSS для стилей
 
 const Edit = () => {
-    const navigate = useNavigate()
-    const params = useParams()
+  const navigate = useNavigate();
+  const params = useParams();
+  const { getTanksForEdit, editTanks, edit } = useContext(TanksContext);
 
-    const{getTanksForEdit, editTanks, edit} = useContext(TanksContext)
+  const [edited, setEdited] = useState({
+    name: '',
+    type: '',
+    country: '',
+    image: '',
+    price: '',
+    description: '',
+  });
 
-    useEffect(()=>{
-        getTanksForEdit(params.id)
-    }, [])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await getTanksForEdit(params.id);
+      } catch (error) {
+        console.error('Failed to fetch tank details', error);
+      }
+    };
+    fetchData();
+  }, [params.id, getTanksForEdit]);
 
-    const [edited, setEdited] = useState({
-        name: '',
-        type: '',
-        country: '',
-        image: '',
-        price: '',
-        description: '', 
-    })
-
-    useEffect(()=>{
-        setEdited(edit)
-    },[edit])
-
-    function handleValues(e){
-        let values = {
-            ...edited,
-            [e.target.name]: e.target.value,
-        };
-        setEdited(values)
+  useEffect(() => {
+    if (edit) {
+      setEdited(edit);
     }
+  }, [edit]);
 
-    function checkValues(){
-        if (
-            !edited.name ||
-            !edited.type ||
-            !edited.image ||
-            !edited.country||
-            !edited.price||
-            !edited.description
-          ) {
-            alert("Заполните поля !");
-            return;
-          } else {
-            editTanks(params.id, edited)
-            navigate('/tanks')
-          }
+  function handleValues(e) {
+    const { name, value } = e.target;
+    setEdited(prevState => ({ ...prevState, [name]: value }));
+  }
+
+  function checkValues() {
+    const { name, type, country, image, price, description } = edited;
+    if (!name || !type || !country || !image || !price || !description) {
+      alert("Заполните все поля!");
+      return;
     }
-    return (
-        <>
-        {edited? <div style={{backgroundImage: 'url(https://izaktv.pl/wp-content/uploads/2020/06/WoT_PC_Key_art_1.9.1_Berlin_map.jpg)', backgroundSize: 'cover', backgroundAttachment: 'fixed'}} className="d-flex justify-content-center align-items-center" >
-        <div style={{border: 'grey solid 4px', borderRadius: '5%', marginTop: "120px", marginBottom: '100px', minWidth: '320px', backgroundColor: "rgba(0,0,0,0.4)", textAlign: 'center', display: "flex"}} className="col-4 d-flex flex-column align-items-center">
-            <h3 style={{color:'orangered'}}>Форма для редактирования</h3>
-            <input value={edited.name} onChange={handleValues} style={{height: '40px'}} type="text" placeholder="Введите имя" name="name" className="m-3 col-9"/>
-            <input value={edited.type} onChange={handleValues} style={{height: '40px'}} type="text" placeholder="Введите тип" name="type" className="m-3 col-9"/>
-            <input value={edited.country} onChange={handleValues} style={{height: '40px'}} type="text" placeholder="Введите страну" name="country" className="m-3 col-9"/>
-            <input value={edited.image} onChange={handleValues} style={{height: '40px'}} type="text" placeholder="Введите url для картинки" name="image" className="m-3 col-9"/>
-            <input value={edited.description} onChange={handleValues} style={{height: '40px'}} type="text" placeholder="Введите описание" name="description" className="m-3 col-9"/>
-            <input value={edited.price} onChange={handleValues} style={{height: '40px'}} type="number" placeholder="Введите цену" name="price" className="m-3 col-9"/>
-            <button onClick={checkValues} style={{background: 'orange', color: 'white', fontSize: '20px', fontWeight: '500'}} className="btn m-3 col-5">Сохранить</button>
-        </div> 
-        </div>: <h1>Loading</h1>}
-        </>
+    editTanks(params.id, edited)
+      .then(() => navigate('/tanks'))
+      .catch(error => console.error('Failed to edit tank', error));
+  }
 
-    );
+  return (
+    <>
+      {edited ? (
+        <div className="edit-container">
+          <div className="edit-form">
+            <h3 className="form-title">Форма для редактирования</h3>
+            <input
+              value={edited.name}
+              onChange={handleValues}
+              type="text"
+              placeholder="Введите имя"
+              name="name"
+              className="form-input"
+            />
+            <input
+              value={edited.type}
+              onChange={handleValues}
+              type="text"
+              placeholder="Введите тип"
+              name="type"
+              className="form-input"
+            />
+            <input
+              value={edited.country}
+              onChange={handleValues}
+              type="text"
+              placeholder="Введите страну"
+              name="country"
+              className="form-input"
+            />
+            <input
+              value={edited.image}
+              onChange={handleValues}
+              type="text"
+              placeholder="Введите URL для картинки"
+              name="image"
+              className="form-input"
+            />
+            <input
+              value={edited.description}
+              onChange={handleValues}
+              type="text"
+              placeholder="Введите описание"
+              name="description"
+              className="form-input"
+            />
+            <input
+              value={edited.price}
+              onChange={handleValues}
+              type="number"
+              placeholder="Введите цену"
+              name="price"
+              className="form-input"
+            />
+            <button
+              onClick={checkValues}
+              className="save-button"
+            >
+              Сохранить
+            </button>
+          </div>
+        </div>
+      ) : (
+        <h1>Loading...</h1>
+      )}
+    </>
+  );
 };
 
 export default Edit;
