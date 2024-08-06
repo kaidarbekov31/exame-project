@@ -1,4 +1,4 @@
-// В файле favouritesContext.js
+
 import React, { useReducer } from "react";
 
 export const FavouriteContext = React.createContext();

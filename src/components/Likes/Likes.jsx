@@ -6,13 +6,13 @@ import { likesContext } from "../../context/likesContext";
 const Likes = () => {
   const { getLikes, likes, addLike, saveEditedLikes } = useContext(likesContext);
   const { id } = useParams();
-  const [email, setEmail] = useState(""); // Установите начальное состояние email
+  const [email, setEmail] = useState(""); 
 
   useEffect(() => {
     getLikes(id);
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {
-      setEmail(storedUser.email); // Обновите это в зависимости от структуры данных
+      setEmail(storedUser.email); 
     }
   }, [id]);
 

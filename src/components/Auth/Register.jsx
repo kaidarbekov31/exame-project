@@ -1,4 +1,4 @@
-// components/Auth/Register.jsx
+
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContent';
 import { Link } from 'react-router-dom';
@@ -33,7 +33,6 @@ const Register = () => {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          autoFocus
           required
         />
 

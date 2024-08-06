@@ -1,3 +1,4 @@
+
 .register {
   display: flex;
   flex-direction: column;
@@ -11,13 +12,13 @@
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.3); /* Добавлено для согласованности */
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .auth-label {
   margin-bottom: 10px;
-  color: white; /* Добавлено для согласованности */
-  font-size: 20px; /* Добавлено для согласованности */
+  color: white; 
+  font-size: 20px; 
 }
 
 .auth-input {
@@ -26,7 +27,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100%;
-  font-size: 16px; /* Исправлено для согласованности */
+  font-size: 16px; 
 }
 
 .auth-btn {
@@ -36,7 +37,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  width: 100%; /* Для согласованности */
+  width: 100%; 
 }
 
 .auth-text {

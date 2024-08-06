@@ -6,27 +6,27 @@ import {
 } from "@ant-design/icons/lib/icons";
 import { Tooltip } from "antd";
 import React, { useContext, useState } from "react";
-import { CommentContext } from "../../context/commentsContext"; // Исправлено имя импорта
+import { CommentContext } from "../../context/commentsContext";
 import moment from "moment";
 import "./Comments.css";
 import { timeSince } from "../helpers/calcTimeLeft";
 
 const Comments = ({ item, id }) => {
-  const { deleteComment } = useContext(CommentContext); // Исправлено имя контекста
-  const [email] = useState(false); // Проверьте, что это значение актуально
-  const [likes, setLikes] = useState(item.newComment.likes || 0); // Изначальное количество лайков
-  const [dislikes, setDislikes] = useState(item.newComment.dislikes || 0); // Изначальное количество дизлайков
+  const { deleteComment } = useContext(CommentContext); 
+  const [email] = useState(false); 
+  const [likes, setLikes] = useState(item.newComment.likes || 0); 
+  const [dislikes, setDislikes] = useState(item.newComment.dislikes || 0); 
   const [action, setAction] = useState(null);
 
   const like = () => {
-    setLikes(prev => prev + 1); // Увеличение количества лайков
-    setDislikes(0); // Сброс дизлайков
+    setLikes(prev => prev + 1); 
+    setDislikes(0); 
     setAction("liked");
   };
 
   const dislike = () => {
-    setLikes(0); // Сброс лайков
-    setDislikes(prev => prev + 1); // Увеличение количества дизлайков
+    setLikes(0); 
+    setDislikes(prev => prev + 1); 
     setAction("disliked");
   };
 

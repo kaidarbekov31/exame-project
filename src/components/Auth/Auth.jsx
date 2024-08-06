@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAuth } from "../../context/AuthContext"; // Убедитесь, что импортируете из правильного контекста
+import { useAuth } from "../../context/AuthContext"; 
 import Home from "../Home/Home";
 import Login from "./Login";
 import Register from "./Register";

@@ -1,4 +1,4 @@
-/* Header.css */
+
 .navbar {
     height: 70px;
     width: 100%;
@@ -36,37 +36,37 @@
 .icons {
     display: flex;
     align-items: center;
-    width: auto; /* Изменено с 250px на auto для более гибкого размера */
+    width: auto;
 }
 
 .shop-icon {
     font-size: 24px;
     margin-right: 20px;
-    color: white; /* Убедитесь, что иконки видны */
+    color: white; 
 }
 
 .div-reg {
     cursor: pointer;
-    background: #007bff; /* Яркий синий цвет для кнопки */
+    background: #007bff;
     border-radius: 5px;
-    padding: 10px 20px; /* Увеличены размеры кнопки */
+    padding: 10px 20px; 
     margin-right: 10px;
-    color: white; /* Текст кнопки белый для контраста */
-    font-size: 16px; /* Увеличен размер шрифта */
-    text-align: center; /* Центрирование текста */
-    border: none; /* Удаление границы */
-    transition: background 0.3s ease; /* Плавный переход цвета фона */
+    color: white; 
+    font-size: 16px; 
+    text-align: center;
+    border: none; 
+    transition:  0.3s ease; 
 }
 
 .div-reg:hover {
-    background: #0056b3; /* Более темный оттенок синего при наведении */
+    background: #0056b3; 
 }
 
 .div-reg:active {
-    background: #004080; /* Еще более темный оттенок синего при нажатии */
+    background: #004080; 
 }
 
 .div-reg:focus {
-    outline: none; /* Убираем стандартный контур при фокусе */
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3); /* Добавляем тень при фокусе для улучшения видимости */
+    outline: none; 
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3);
 }

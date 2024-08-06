@@ -1,20 +1,20 @@
 import { Input } from "antd";
 import React, { useContext, useEffect, useState } from "react";
-import { CommentContext } from "../../context/commentsContext"; // Обратите внимание на правильное имя
+import { CommentContext } from "../../context/commentsContext"; 
 import Comments from "../Commentarii/Comments";
 import "./Comments.css";
 import Likes from "../Likes/Likes";
 
 const CommentList = ({ id }) => {
-  const { getComments, comments, createComment } = useContext(CommentContext); // Используйте CommentContext
-  const [email, setEmail] = useState(false); // Добавлено состояние для email
+  const { getComments, comments, createComment } = useContext(CommentContext); 
+  const [email, setEmail] = useState(false); 
   const [newComment, setNewComment] = useState({
     word: "",
   });
 
   useEffect(() => {
     getComments(id);
-  }, [getComments, id]); // Добавлены зависимости для useEffect
+  }, [getComments, id]); 
 
   const handleValues = (e) => {
     const createdAtMs = Date.now();
@@ -32,7 +32,7 @@ const CommentList = ({ id }) => {
       return;
     }
     createComment(newComment, id);
-    setNewComment({ word: "" }); // Очистка поля после добавления комментария
+    setNewComment({ word: "" }); 
   };
 
   return (

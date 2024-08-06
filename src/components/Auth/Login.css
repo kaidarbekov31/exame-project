@@ -4,9 +4,9 @@
   background-image: url(https://u.kanobu.ru/editor/images/57/0b83b2d0-4968-446b-b39b-da07ba18a036.jpg);
   background-size: cover;
   display: flex;
-  justify-content: center; /* Центрирование по горизонтали */
-  align-items: center; /* Центрирование по вертикали */
-  padding: 0; /* Удален лишний отступ */
+  justify-content: center; 
+  align-items: center; 
+  padding: 0; 
   background-attachment: fixed;
 }
 
@@ -72,8 +72,8 @@
 }
 
 .forgot {
-  color: lightblue; /* Это свойство лучше удалить здесь */
-  font-size: 20px; /* Это свойство лучше удалить здесь */
+  color: lightblue; 
+  font-size: 20px; 
 }
 
 @media all and (max-width: 370px) {

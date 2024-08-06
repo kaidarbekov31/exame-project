@@ -7,7 +7,7 @@ import "./Details.css";
 const Details = () => {
   const { getMore, more } = useContext(TanksContext);
   const { id } = useParams();
-  const [tank, setTank] = useState(null); // Изначально tank - null
+  const [tank, setTank] = useState(null); 
 
   useEffect(() => {
     // Функция для показа приветственного сообщения

@@ -10,23 +10,23 @@ import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { TanksContext } from "../../context/TanksContext";
 import { cartContext } from "../../context/cartContext";
-import { FavouriteContext } from "../../context/favouritesContext"; // Убедитесь, что импортируете правильно
+import { FavouriteContext } from "../../context/favouritesContext"; 
 import "./Tanks.css";
 
 const Tanks = ({ item }) => {
   const { deleteTanks } = useContext(TanksContext);
   const { addProductToCart, checkItemInCart } = useContext(cartContext);
-  const { favourite, addProductToFavourite, checkItemInFavourite } = useContext(FavouriteContext); // Добавлен checkItemInFavourite
+  const { favourite, addProductToFavourite, checkItemInFavourite } = useContext(FavouriteContext); 
 
   const [checkInCart, setCheckInCart] = useState(checkItemInCart(item.id));
-  const [checkInFavourite, setCheckInFavourite] = useState(checkItemInFavourite(item.id)); // Используйте функцию checkItemInFavourite
+  const [checkInFavourite, setCheckInFavourite] = useState(checkItemInFavourite(item.id)); 
 
   useEffect(() => {
     setCheckInCart(checkItemInCart(item.id));
     setCheckInFavourite(checkItemInFavourite(item.id));
   }, [item.id, checkItemInCart, checkItemInFavourite]);
 
-  const [email] = useState("ajdarbekovkudajberdi@gmail.com"); // Здесь должно быть реальное значение email из контекста или хранилища
+  const [email] = useState("ajdarbekovkudajberdi@gmail.com");
 
   return (
     <div className="m-4 card">

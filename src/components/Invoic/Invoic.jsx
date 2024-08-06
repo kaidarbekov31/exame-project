@@ -20,7 +20,7 @@ const Invoic = () => {
 
   function deleteFromCart() {
     localStorage.removeItem("Cartinfo");
-    setUser(null); // Очистите состояние корзины
+    setUser(null); 
   }
 
   return (

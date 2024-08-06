@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useReducer } from "react";
 
-// Создаем контекст для работы с танками
+
 export const TanksContext = React.createContext();
 
 const API = "http://localhost:8000/apitanks";
@@ -13,7 +13,6 @@ const INIT_STATE = {
   total: 0
 };
 
-// Редьюсер для управления состоянием
 const reducer = (state = INIT_STATE, action) => {
   switch (action.type) {
     case "GET_TANKS":
@@ -40,17 +39,17 @@ const reducer = (state = INIT_STATE, action) => {
 const TanksContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
-  // Создание нового танка
+ 
   const createTank = async (newTank) => {
     try {
       await axios.post(API, newTank);
-      getTanks(); // Обновляем список танков после добавления
+      getTanks(); 
     } catch (error) {
       console.error("Error creating tank:", error);
     }
   };
 
-  // Получение танков с параметрами для пагинации и фильтрации
+  
   const getTanks = async () => {
     try {
       const res = await axios.get(`${API}${window.location.search}`);
@@ -63,7 +62,7 @@ const TanksContextProvider = ({ children }) => {
     }
   };
 
-  // Получение информации о конкретном танке и его комментариях
+
   const getMore = async (id) => {
     try {
       const res = await axios.get(`${API}/${id}?_embed=comments`);
@@ -76,7 +75,7 @@ const TanksContextProvider = ({ children }) => {
     }
   };
 
-  // Получение данных для редактирования конкретного танка
+  
   const getTanksForEdit = async (id) => {
     try {
       const res = await axios.get(`${API}/${id}`);
@@ -89,21 +88,20 @@ const TanksContextProvider = ({ children }) => {
     }
   };
 
-  // Сохранение изменений в танке
   const editTanks = async (id, editedTanks) => {
     try {
       await axios.patch(`${API}/${id}`, editedTanks);
-      getTanks(); // Обновляем список танков после редактирования
+      getTanks(); 
     } catch (error) {
       console.error("Error editing tank:", error);
     }
   };
 
-  // Удаление конкретного танка
+
   const deleteTanks = async (id) => {
     try {
       await axios.delete(`${API}/${id}`);
-      getTanks(); // Обновляем список танков после удаления
+      getTanks(); 
     } catch (error) {
       console.error("Error deleting tank:", error);
     }

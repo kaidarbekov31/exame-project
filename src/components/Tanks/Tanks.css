@@ -1,5 +1,5 @@
 .card {
-  /* Эффект наведения */
+ 
   transition: box-shadow 0.3s ease;
 }
 
@@ -8,7 +8,7 @@
 }
 
 .c {
-  /* Фоновое изображение */
+  
   background-image: url(https://t4.ftcdn.net/jpg/02/81/65/35/360_F_281653591_LZmmypLdZaFsqOsJBsxilj3OYdINzh2B.jpg);
   background-size: cover;
   background-position: center;
@@ -16,7 +16,7 @@
 }
 
 .card-inner {
-  /* Основные стили карточки */
+
   width: 24rem;
   border: none;
   transition: width 0.3s ease;

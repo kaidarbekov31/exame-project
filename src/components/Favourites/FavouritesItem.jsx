@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { List } from "antd";
 import { Button } from "react-bootstrap";
-import { FavouriteContext } from "../../context/favouritesContext"; // Обновлено
+import { FavouriteContext } from "../../context/favouritesContext"; 
 import { cartContext } from "../../context/cartContext";
 import "./Fav.css";
 
@@ -13,7 +13,7 @@ const FavouritesItem = ({ item }) => {
     setCheckInCart(checkItemInCart(item.item.id));
   }, [item.item.id, checkItemInCart]);
 
-  const { deleteFromFavourite } = useContext(FavouriteContext); // Обновлено
+  const { deleteFromFavourite } = useContext(FavouriteContext); 
 
   return (
     <div>

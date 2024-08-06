@@ -1,4 +1,4 @@
-// В файле Favourites.jsx
+
 import { FavouriteContext } from "../../context/favouritesContext";
 import React, { useContext, useEffect } from "react";
 import { List } from "antd";
@@ -23,7 +23,7 @@ const Favourites = () => {
       <List
         itemLayout="vertical"
         size="large"
-        dataSource={favourite?.products || []} // Добавляем пустой массив по умолчанию
+        dataSource={favourite?.products || []} 
         renderItem={(item) => <FavouritesItem item={item} />}
       />
     </div>

@@ -10,7 +10,7 @@ import { FavouriteContext } from "../../context/favouritesContext";
 
 const Header = () => {
   const location = useLocation();
-  const [email, setEmail] = useState(null); // Инициализация состояния email как null
+  const [email, setEmail] = useState(null); 
 
   const { getCart, cartLength } = useContext(cartContext);
   const { getFavourite, favourite, favouriteLength } = useContext(FavouriteContext);
@@ -20,8 +20,7 @@ const Header = () => {
     getFavourite();
   }, [getCart, getFavourite]);
 
-  // Здесь должен быть код для получения email, если он хранится в контексте или локальном хранилище
-
+  
   return (
     <Navbar className="navbar" variant="light">
       <Container>
@@ -29,7 +28,7 @@ const Header = () => {
           <img className="logo" src={Logo} alt="Logo" />
         </Link>
         <div className="route">
-          {email === "tarieltairov1@gmail.com" && (
+          {email === "ajdarbekovkudajberdi@gmail.com" && (
             <Link
               className={location.pathname === "/add" ? "navbar__item-active" : "navbar__item"}
               to="/add"

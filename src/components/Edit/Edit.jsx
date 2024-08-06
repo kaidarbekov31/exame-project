@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { TanksContext } from '../../context/TanksContext';
-import './Edit.css'; // Подключите файл CSS для стилей
+import './Edit.css'; 
 
 const Edit = () => {
   const navigate = useNavigate();
