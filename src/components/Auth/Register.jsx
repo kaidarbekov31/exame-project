@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContent';
 import { Link } from 'react-router-dom';
@@ -8,10 +7,16 @@ const Register = () => {
   const { register } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    register(email, password);
+    try {
+      await register(email, password);
+      console.log('Successfully registered');
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
@@ -35,6 +40,8 @@ const Register = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+
+        {error && <p className="error-msg">{error}</p>}
 
         <div className="btn-container">
           <button className="auth-btn" type="submit">

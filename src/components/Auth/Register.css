@@ -1,50 +1,94 @@
-
 .register {
+  width: 100%;
+  min-height: 90vh;
+  background-image: url(https://u.kanobu.ru/editor/images/57/0b83b2d0-4968-446b-b39b-da07ba18a036.jpg);
+  background-size: cover;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center; 
+  align-items: center; 
+  padding: 0; 
+  background-attachment: fixed;
 }
 
 .register-container {
+  padding: 40px; 
+  min-height: 400px;
+  min-width: 350px; 
   display: flex;
   flex-direction: column;
-  width: 300px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.3);
+  justify-content: center;
+  border: none; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  background-color: rgba(255, 255, 255, 0.9); 
 }
 
 .auth-label {
   margin-bottom: 10px;
-  color: white; 
-  font-size: 20px; 
+  color: #333; 
+  font-size: 16px; 
+  font-weight: 600; 
 }
 
 .auth-input {
   margin-bottom: 20px;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid #ddd; 
+  border-radius: 5px; 
   width: 100%;
   font-size: 16px; 
+  background-color: #fafafa; 
 }
 
 .auth-btn {
-  padding: 10px;
-  background-color: #4a4a4a;
+  padding: 12px 0; 
+  background-color: #007bff; 
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 5px; 
   cursor: pointer;
   width: 100%; 
+  font-size: 16px;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease; 
+}
+
+.auth-btn:hover {
+  background-color: #0056b3; 
+}
+
+.btn-container {
+  width: 100%;
+  padding: 20px 0; 
 }
 
 .auth-text {
-  margin-top: 10px;
+  margin: 14px 0 0 0;
+  text-align: right;
+  font-size: 14px; 
+  color: #555; 
 }
 
 .auth-span {
-  color: blue;
+  color: #007bff; 
+  font-weight: 600; 
   cursor: pointer;
+  margin-left: 5px;
+  transition: all 400ms ease-in-out;
+}
+
+.auth-span:hover {
+  text-decoration: underline; 
+}
+
+.error-msg {
+  color: red;
+  font-size: 14px; 
+  margin-top: 10px; 
+}
+
+@media all and (max-width: 370px) {
+  .register-container {
+      min-width: 300px; 
+  }
 }

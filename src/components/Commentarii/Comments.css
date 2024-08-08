@@ -1,35 +1,108 @@
-.items-list{
-    overflow: auto;
+
+.comment-list {
     width: 100%;
-    height: 80vh;
-    margin-top: 10px;
-    border-top: 2px solid grey;
-    border-bottom: 2px solid grey;
-
-    margin-bottom: 30px;
-}
-.items-list::-webkit-scrollbar {
-    width: 5px;
-    height: 20px;
-}
-.items-list::-webkit-scrollbar-thumb{
-    border-width:1px 1px 1px 2px;
-    border-radius: 2px;
-    border-color: #777;
-    background-color: #aaa;
-}
-.items-list::-webkit-scrollbar-track{
-    border-width:0;
-}       
-
-.comment-action {
-    padding-left: 8px;
-    cursor: auto;
-    color: black;
-    font-size: 18px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border: solid black 2px;
+    background-color: #f9f9f9;
   }
   
-  [class*='-col-rtl'] .comment-action {
-    padding-right: 8px;
-    padding-left: 0;
+  .comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
   }
+  
+  .comment-title {
+    margin: 0;
+    text-align: center;
+  }
+  
+  .comment-actions {
+    display: flex;
+    height: 60px;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .comment-input {
+    flex: 1;
+  }
+  
+  .comment-button {
+    background: #3399ff;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 0 20px;
+    height: 40px;
+    cursor: pointer;
+  }
+  
+  .comments-container {
+    overflow-y: auto;
+  }
+  
+  .comment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+  
+  .comment-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .comment-details {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .comment-header-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .comment-author {
+    font-weight: bold;
+  }
+  
+  .comment-date {
+    color: grey;
+    font-size: 14px;
+  }
+  
+  .comment-text {
+    margin: 0;
+  }
+  
+  .comment-actions-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .comment-action-icon {
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .comment-action-count {
+    margin-left: 5px;
+  }
+  

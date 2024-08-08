@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useReducer } from "react";
 
-
+// Создаем контекст для работы с танками
 export const TanksContext = React.createContext();
 
 const API = "http://localhost:8000/apitanks";
@@ -50,9 +50,22 @@ const TanksContextProvider = ({ children }) => {
   };
 
   
+  // const getTanks = async () => {
+  //   try {
+  //     const res = await axios.get(`${API}${window.location.search}`);
+  //     dispatch({
+  //       type: "GET_TANKS",
+  //       payload: res,
+  //     });
+  //   } catch (error) {
+  //     console.error("Error fetching tanks:", error);
+  //   }
+  // };
   const getTanks = async () => {
     try {
       const res = await axios.get(`${API}${window.location.search}`);
+      console.log("Response data:", res.data); // Логируем ответ
+      console.log("Response headers:", res.headers); // Логируем заголовки ответа
       dispatch({
         type: "GET_TANKS",
         payload: res,

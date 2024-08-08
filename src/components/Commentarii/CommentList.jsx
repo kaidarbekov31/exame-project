@@ -1,3 +1,4 @@
+
 import { Input } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { CommentContext } from "../../context/commentsContext"; 
@@ -36,44 +37,30 @@ const CommentList = ({ id }) => {
   };
 
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "600px",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        padding: "10px 20px",
-        border: "solid black 2px",
-      }}
-    >
-      <div className="d-flex justify-content-between">
-        <h3 style={{ textAlign: "center" }}>Оставьте отзыв/комментарий</h3>
-        {email ? <Likes /> : null}
+    <div className="comment-list">
+      <div className="comment-header">
+        <h3 className="comment-title">Оставьте отзыв/комментарий</h3>
+        {email && <Likes />}
       </div>
-      <div className="items-list">
+      <div className="comments-container">
         {comments &&
           comments
             .sort((a, b) => b.createdAtMs - a.createdAtMs)
             .map((item) => <Comments id={id} key={item.id} item={item} />)}
       </div>
       {email && (
-        <div style={{ display: "flex", height: "60px" }}>
+        <div className="comment-actions">
           <Input
             id="comment"
             onChange={handleValues}
             name="word"
             placeholder="Enter text..."
             value={newComment.word}
+            className="comment-input"
           />
           <button
             onClick={checkValues}
-            style={{
-              background: "#3399ff",
-              borderRadius: "5px",
-              border: "none",
-              color: "white",
-            }}
+            className="comment-button"
           >
             Add comment
           </button>

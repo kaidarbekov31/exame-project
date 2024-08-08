@@ -1,25 +1,20 @@
+
 .card {
- 
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .card:hover {
   box-shadow: 3px 4px 5px darkgray;
-}
-
-.c {
-  
-  background-image: url(https://t4.ftcdn.net/jpg/02/81/65/35/360_F_281653591_LZmmypLdZaFsqOsJBsxilj3OYdINzh2B.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  transform: scale(1.02);
 }
 
 .card-inner {
-
   width: 24rem;
   border: none;
-  transition: width 0.3s ease;
+  transition: width 0.3s ease, transform 0.3s ease;
 }
 
 @media all and (max-width: 425px) {
@@ -33,3 +28,53 @@
     width: 15rem;
   }
 }
+
+.c {
+  background-image: url(https://t4.ftcdn.net/jpg/02/81/65/35/360_F_281653591_LZmmypLdZaFsqOsJBsxilj3OYdINzh2B.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 200px; 
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: black;
+}
+
+.card-info {
+  margin-bottom: 0.5rem;
+}
+
+.card-price {
+  font-size: 1.2rem;
+  color: red;
+  font-weight: bold;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.card-actions a {
+  color: black;
+}
+
+.card-actions .anticon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
