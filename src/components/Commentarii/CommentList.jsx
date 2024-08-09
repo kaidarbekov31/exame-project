@@ -1,21 +1,22 @@
-
 import { Input } from "antd";
 import React, { useContext, useEffect, useState } from "react";
-import { CommentContext } from "../../context/commentsContext"; 
+import { CommentContext } from "../../context/commentsContext";
 import Comments from "../Commentarii/Comments";
 import "./Comments.css";
 import Likes from "../Likes/Likes";
 
 const CommentList = ({ id }) => {
-  const { getComments, comments, createComment } = useContext(CommentContext); 
-  const [email, setEmail] = useState(false); 
+  const { getComments, comments, createComment } = useContext(CommentContext);
+  const [email, setEmail] = useState(false);
   const [newComment, setNewComment] = useState({
     word: "",
   });
+  
 
   useEffect(() => {
+    setEmail(localStorage.getItem('user') ? true : false)
     getComments(id);
-  }, [getComments, id]); 
+  });
 
   const handleValues = (e) => {
     const createdAtMs = Date.now();
@@ -33,7 +34,7 @@ const CommentList = ({ id }) => {
       return;
     }
     createComment(newComment, id);
-    setNewComment({ word: "" }); 
+    setNewComment({ word: "" });
   };
 
   return (
@@ -58,10 +59,7 @@ const CommentList = ({ id }) => {
             value={newComment.word}
             className="comment-input"
           />
-          <button
-            onClick={checkValues}
-            className="comment-button"
-          >
+          <button onClick={checkValues} className="comment-button">
             Add comment
           </button>
         </div>

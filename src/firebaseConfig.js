@@ -1,15 +1,16 @@
 // src/firebaseConfig.js
 
-import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyARxdpWGuebrmzq8_LBnUl7KvBTavqM-2E",
-  authDomain: "project-wot-50745.firebaseapp.com",
-  projectId: "project-wot-50745",
-  storageBucket: "project-wot-50745.appspot.com",
-  messagingSenderId: "668331022457",
-  appId: "1:668331022457:web:361fa50d89dd07a8aedca8"
+  apiKey: "AIzaSyBtI_jBeKK8TGbn97htFUt0Z3wS4eoYDlA",
+  authDomain: "tank-d2bca.firebaseapp.com",
+  projectId: "tank-d2bca",
+  storageBucket: "tank-d2bca.appspot.com",
+  messagingSenderId: "143357024361",
+  appId: "1:143357024361:web:719363b65bd5c8f765eaf8",
+  measurementId: "G-VXFBPVMC85",
 };
 
 const app = initializeApp(firebaseConfig);

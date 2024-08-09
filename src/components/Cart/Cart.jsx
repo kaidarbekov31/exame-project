@@ -23,7 +23,12 @@ const Cart = () => {
   };
 
   const checkValues = () => {
-    if (!newUser.username || !newUser.province || !newUser.street || !newUser.email) {
+    if (
+      !newUser.username ||
+      !newUser.province ||
+      !newUser.street ||
+      !newUser.email
+    ) {
       alert("Please, fill in all fields!");
       return;
     } else {
@@ -54,7 +59,7 @@ const Cart = () => {
 
   useEffect(() => {
     getCart();
-  }, [getCart]);
+  });
 
   return (
     <div style={{ paddingTop: "100px", paddingBottom: "50px" }}>
@@ -66,14 +71,16 @@ const Cart = () => {
         renderItem={(item) => <CartItem item={item} />}
       />
 
-      <div style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        alignItems: "center",
-        width: "100%",
-        height: "100px",
-      }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          alignItems: "center",
+          width: "100%",
+          height: "100px",
+        }}
+      >
         {cart.totalPrice > 0 && (
           <>
             <Button type="primary" onClick={showModal}>
@@ -100,7 +107,11 @@ const Cart = () => {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
         >
-          <Form.Item label="Username" name="username" rules={[{ required: true, message: "Username is required" }]}>
+          <Form.Item
+            label="Username"
+            name="username"
+            rules={[{ required: true, message: "Username is required" }]}
+          >
             <Input
               style={{ width: 160 }}
               placeholder="Please input"
@@ -108,7 +119,11 @@ const Cart = () => {
             />
           </Form.Item>
 
-          <Form.Item label="Province" name="province" rules={[{ required: true, message: "Province is required" }]}>
+          <Form.Item
+            label="Province"
+            name="province"
+            rules={[{ required: true, message: "Province is required" }]}
+          >
             <Input
               style={{ width: 160 }}
               placeholder="Please input"
@@ -116,7 +131,11 @@ const Cart = () => {
             />
           </Form.Item>
 
-          <Form.Item label="Street" name="street" rules={[{ required: true, message: "Street is required" }]}>
+          <Form.Item
+            label="Street"
+            name="street"
+            rules={[{ required: true, message: "Street is required" }]}
+          >
             <Input
               style={{ width: 160 }}
               placeholder="Please input"
@@ -124,7 +143,11 @@ const Cart = () => {
             />
           </Form.Item>
 
-          <Form.Item label="Email" name="email" rules={[{ required: true, message: "Email is required" }]}>
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[{ required: true, message: "Email is required" }]}
+          >
             <Input
               style={{ width: 160 }}
               placeholder="Please input email"
@@ -133,11 +156,7 @@ const Cart = () => {
           </Form.Item>
 
           <Form.Item label=" " colon={false}>
-            <Button
-              onClick={checkValues}
-              type="primary"
-              htmlType="submit"
-            >
+            <Button onClick={checkValues} type="primary" htmlType="submit">
               Submit
             </Button>
           </Form.Item>

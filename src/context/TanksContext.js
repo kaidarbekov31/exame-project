@@ -62,10 +62,11 @@ const TanksContextProvider = ({ children }) => {
   //   }
   // };
   const getTanks = async () => {
+    
     try {
       const res = await axios.get(`${API}${window.location.search}`);
-      console.log("Response data:", res.data); // Логируем ответ
-      console.log("Response headers:", res.headers); // Логируем заголовки ответа
+      // console.log("Response data:", res.data); // Логируем ответ
+      // console.log("Response headers:", res.headers); // Логируем заголовки ответа
       dispatch({
         type: "GET_TANKS",
         payload: res,

@@ -1,5 +1,3 @@
-
-
 import { Input } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { TanksContext } from "../../context/TanksContext";
@@ -11,23 +9,35 @@ import Filter from "../Filter/Filter";
 const TanksList = () => {
   const { getTanks, tanks, total } = useContext(TanksContext);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [type, setType] = useState(searchParams.get("type") ? searchParams.get("type").split(',') : []);
+  const [type, setType] = useState(
+    searchParams.get("type") ? searchParams.get("type").split(",") : []
+  );
   const [search, setSearch] = useState(searchParams.get("q") || "");
   const [page, setPage] = useState(parseInt(searchParams.get("_page")) || 1);
   const [limit, setLimit] = useState(parseInt(searchParams.get("_limit")) || 9);
+  const [items, setItems] = useState([]);
 
-  useEffect(() => {
-    setSearchParams({
-      q: search,
-      _limit: limit,
-      _page: page,
-      type: type.join(','),
-    });
-  }, [search, limit, page, type, setSearchParams]);
+  // useEffect(() => {
+  //   setSearchParams({
+  //     q: search,
+  //     _limit: limit,
+  //     _page: page,
+  //     type: type.join(","),
+  //   });
+  // }, [search, limit, page, type, setSearchParams]);
+
+  const searchHandle = (e) => {
+    const searchTerm = e.toLowerCase(); // Получаем введённый текст и переводим его в нижний регистр
+    const filtered = tanks.filter(
+      (tank) => tank.name.toLowerCase().includes(searchTerm) // Фильтруем массив, проверяя, включает ли имя танка введённый текст
+    );
+    setItems(filtered);
+  };
+  setTimeout(() => setItems(tanks), 300);
 
   useEffect(() => {
     getTanks();
-  }, [searchParams, getTanks]);
+  }, [type]);
 
   return (
     <div
@@ -56,8 +66,7 @@ const TanksList = () => {
           placeholder="Поиск"
           size="large"
           style={{ width: "25vw" }}
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => searchHandle(e.target.value)}
         />
         <Filter type={type} setType={setType} />
       </div>
@@ -66,7 +75,7 @@ const TanksList = () => {
         className="d-flex justify-content-center flex-wrap"
         style={{ marginBottom: "100px" }}
       >
-        {tanks.map((item) => (
+        {items.map((item) => (
           <Tanks key={item.id} item={item} />
         ))}
       </div>
@@ -89,11 +98,3 @@ const TanksList = () => {
 };
 
 export default TanksList;
-
-
-
-
-
-
-
-

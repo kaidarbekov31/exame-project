@@ -10,17 +10,18 @@ import { FavouriteContext } from "../../context/favouritesContext";
 
 const Header = () => {
   const location = useLocation();
-  const [email, setEmail] = useState(null); 
+  const [email, setEmail] = useState(null);
 
   const { getCart, cartLength } = useContext(cartContext);
-  const { getFavourite, favourite, favouriteLength } = useContext(FavouriteContext);
+  const { getFavourite, favourite, favouriteLength } =
+    useContext(FavouriteContext);
 
   useEffect(() => {
     getCart();
     getFavourite();
-  }, [getCart, getFavourite]);
+    setEmail(localStorage.getItem("user") ? true : false);
+  }, []);
 
-  
   return (
     <Navbar className="navbar" variant="light">
       <Container>
@@ -28,16 +29,24 @@ const Header = () => {
           <img className="logo" src={Logo} alt="Logo" />
         </Link>
         <div className="route">
-          {email === "ajdarbekovkudajberdi@gmail.com" && (
+          {email && (
             <Link
-              className={location.pathname === "/add" ? "navbar__item-active" : "navbar__item"}
+              className={
+                location.pathname === "/add"
+                  ? "navbar__item-active"
+                  : "navbar__item"
+              }
               to="/add"
             >
               ADD
             </Link>
           )}
           <Link
-            className={location.pathname === "/tanks" ? "navbar__item-active" : "navbar__item"}
+            className={
+              location.pathname === "/tanks"
+                ? "navbar__item-active"
+                : "navbar__item"
+            }
             to="/tanks"
           >
             TANKS

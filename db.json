@@ -137,5 +137,42 @@
       "id": "34"
     }
   ],
-  "apicomments": []
+  "apicomments": [
+    {
+      "id": "fe88",
+      "newComment": {
+        "word": "dasdasd",
+        "createdAtMs": 1723221984689,
+        "tanksId": "23"
+      },
+      "tankId": "23"
+    },
+    {
+      "id": "a4dc",
+      "newComment": {
+        "word": "dasdasddasdasd",
+        "createdAtMs": 1723222003831,
+        "tanksId": "23"
+      },
+      "tankId": "23"
+    },
+    {
+      "id": "d8f9",
+      "newComment": {
+        "word": "utfutf",
+        "createdAtMs": 1723222540319,
+        "tanksId": "21"
+      },
+      "tankId": "21"
+    },
+    {
+      "id": "1f3e",
+      "newComment": {
+        "word": "hjgfhdfbsukj",
+        "createdAtMs": 1723226522888,
+        "tanksId": "19"
+      },
+      "tankId": "19"
+    }
+  ]
 }

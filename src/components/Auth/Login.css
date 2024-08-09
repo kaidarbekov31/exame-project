@@ -41,8 +41,8 @@
   font-size: 19px;
   padding: 10px;
   letter-spacing: 2px;
-  background-color: #fff; /* Добавлено для видимости текста */
-  color: #000; /* Добавлено для видимости текста */
+  background-color: #fff; 
+  color: #000; 
 }
 
 .btn-container {

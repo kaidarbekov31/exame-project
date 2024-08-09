@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "./Home.css";
 import Photo from "../image/logo-2.png";
-import { Carousel } from "react-bootstrap";
+import { Carousel} from "antd";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Home = () => {
@@ -37,27 +37,27 @@ const Home = () => {
       <section className="word">
         <h2>ИГРА С ИСТОРИЕЙ</h2>
         <div className="carousel-section">
-          <Carousel controls={false} indicators={false}>
-            <Carousel.Item>
+          <Carousel arrows>
+            <div>
               <p className="award-title">ЧЕТЫРЕ НАГРАДЫ GOLDEN JOYSTICK</p>
               <h3 className="award-description">
                 «Лучшая MMO» (2012), «Лучшая онлайн-игра» (2013), <br />
                 «По-прежнему в тренде» (2017, 2018)
               </h3>
-            </Carousel.Item>
-            <Carousel.Item>
+            </div>
+            <div>
               <p className="award-title">ДВА МИРОВЫХ РЕКОРДА ГИННЕССА</p>
               <h3 className="award-description">
                 За наибольшее количество игроков, <br />
                 одновременно пребывающих на игровом сервере
               </h3>
-            </Carousel.Item>
-            <Carousel.Item>
+            </div>
+            <div>
               <p className="award-title">КРИ 2011</p>
               <h3 className="award-description">
                 Звание лучшей игры года и приз зрительских симпатий
               </h3>
-            </Carousel.Item>
+            </div>
           </Carousel>
         </div>
         <p className="description">
@@ -78,80 +78,80 @@ const Home = () => {
         </p>
       </section>
       <section className="screenshots">
-        <Carousel controls>
-          <Carousel.Item>
+        <Carousel arrows>
+          <div>
             <img
               className="d-block w-100"
               src="https://eu-wotp.wgcdn.co/dcont/fb/image/tmb/1_a66_m103_redshir_1024x.jpg"
               alt="Скриншот 1"
             />
-          </Carousel.Item>
-          <Carousel.Item>
+          </div>
+          <div>
             <img
               className="d-block w-100"
               src="https://eu-wotp.wgcdn.co/dcont/fb/image/tmb/3_f18_bat_chatillon25t_pereval_1024x.jpg"
               alt="Скриншот 2"
             />
-          </Carousel.Item>
-          <Carousel.Item>
+          </div>
+          <div>
             <img
               className="d-block w-100"
               src="https://eu-wotp.wgcdn.co/dcont/fb/image/tmb/4_r45_is_7_mannerheim_line_1024x.jpg"
               alt="Скриншот 3"
             />
-          </Carousel.Item>
-          <Carousel.Item>
+          </div>
+          <div>
             <img
               className="d-block w-100"
               src="https://eu-wotp.wgcdn.co/dcont/fb/image/tmb/5_a116_xm551_prohorovka_1024x.jpg"
               alt="Скриншот 4"
             />
-          </Carousel.Item>
-          <Carousel.Item>
+          </div>
+          <div>
             <img
               className="d-block w-100"
               src="https://eu-wotp.wgcdn.co/dcont/fb/image/tmb/6_a120_m48a5_patton_aerodrom_1024x.jpg"
               alt="Скриншот 5"
             />
-          </Carousel.Item>
-          <Carousel.Item>
+          </div>
+          <div>
             <img
               className="d-block w-100"
               src="https://eu-wotp.wgcdn.co/dcont/fb/image/tmb/7_a116_xm551_mannerheim_line_1024x.jpg"
               alt="Скриншот 6"
             />
-          </Carousel.Item>
-          <Carousel.Item>
+          </div>
+          <div>
             <img
               className="d-block w-100"
               src="https://eu-wotp.wgcdn.co/dcont/fb/image/tmb/8_lt08_progetto_m40_mod_65_el-halluf_1024x.jpg"
               alt="Скриншот 7"
             />
-          </Carousel.Item>
-          <Carousel.Item>
+          </div>
+          <div>
             <img
               className="d-block w-100"
               src="https://eu-wotp.wgcdn.co/dcont/fb/image/tmb/9_r133_kv_122_02_murovanka_1024x.jpg"
               alt="Скриншот 8"
             />
-          </Carousel.Item>
-          <Carousel.Item>
+          </div>
+          <div>
             <img
               className="d-block w-100"
               src="https://eu-wotp.wgcdn.co/dcont/fb/image/tmb/10_gb31_conqueror_gc_rudniki_1024x.jpg"
               alt="Скриншот 9"
             />
-          </Carousel.Item>
+          </div>
         </Carousel>
       </section>
       <section className="nationality">
         <h1>Более 600 боевых машин от крупнейших танкостроительных держав</h1>
         <p>Каждая модель воссоздана до мельчайших деталей</p>
         <Carousel
-          indicators={false}
+          arrows
           className="text-center nat_inner"
         >
-          <Carousel.Item>
+          <div>
             <div className="carousel-item-content">
               <h1 className="nat">СССР</h1>
               <img
@@ -161,8 +161,8 @@ const Home = () => {
               />
               <p>Т-34, ИС, ИС-7, КВ-1, ИСУ-152</p>
             </div>
-          </Carousel.Item>
-          <Carousel.Item>
+          </div>
+          <div>
             <div className="carousel-item-content">
               <h1 className="nat">ГЕРМАНИЯ</h1>
               <img
@@ -172,8 +172,8 @@ const Home = () => {
               />
               <p>StuG III, Panther, Maus, Tiger, Pz. III</p>
             </div>
-          </Carousel.Item>
-          <Carousel.Item>
+          </div>
+          <div>
             <div className="carousel-item-content">
               <h1 className="nat">США</h1>
               <img
@@ -183,8 +183,8 @@ const Home = () => {
               />
               <p>Sherman, Pershing, Patton, T32, Hellcat</p>
             </div>
-          </Carousel.Item>
-          <Carousel.Item>
+          </div>
+          <div>
             <div className="carousel-item-content">
               <h1 className="nat">ФРАНЦИЯ</h1>
               <img
@@ -194,8 +194,8 @@ const Home = () => {
               />
               <p>Somua S35, AMX 13, B1, ARL 44</p>
             </div>
-          </Carousel.Item>
-          <Carousel.Item>
+          </div>
+          <div>
             <div className="carousel-item-content">
               <h1 className="nat">ВЕЛИКОБРИТАНИЯ</h1>
               <img
@@ -205,8 +205,8 @@ const Home = () => {
               />
               <p>Churchill, Cromwell, Centurion, Conqueror</p>
             </div>
-          </Carousel.Item>
-          <Carousel.Item>
+          </div>
+          <div>
             <div className="carousel-item-content">
               <h1 className="nat">ИТАЛИЯ</h1>
               <img
@@ -216,8 +216,8 @@ const Home = () => {
               />
               <p>Carro P.88, P40, Semovente M41, P26/40</p>
             </div>
-          </Carousel.Item>
-          <Carousel.Item>
+          </div>
+          <div>
             <div className="carousel-item-content">
               <h1 className="nat">ЯПОНИЯ</h1>
               <img
@@ -227,8 +227,8 @@ const Home = () => {
               />
               <p>Chi-Nu, Type 4 Heavy, Type 5 Heavy, O-I</p>
             </div>
-          </Carousel.Item>
-          <Carousel.Item>
+          </div>
+          <div>
             <div className="carousel-item-content">
               <h1 className="nat">ПОЛЬША</h1>
               <img
@@ -238,7 +238,7 @@ const Home = () => {
               />
               <p>7TP, 10TP, 14TP, 25TP</p>
             </div>
-          </Carousel.Item>
+          </div>
         </Carousel>
       </section>
     </>

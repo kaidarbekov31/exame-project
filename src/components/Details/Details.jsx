@@ -71,6 +71,7 @@ const Details = () => {
           </div>
         </div>
       </div>
+      dasd
       <CommentList id={tank.id} />
     </>
   );
