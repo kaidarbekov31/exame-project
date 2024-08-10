@@ -62,7 +62,6 @@ const TanksContextProvider = ({ children }) => {
   //   }
   // };
   const getTanks = async () => {
-    
     try {
       const res = await axios.get(`${API}${window.location.search}`);
       // console.log("Response data:", res.data); // Логируем ответ

@@ -17,14 +17,14 @@ const TanksList = () => {
   const [limit, setLimit] = useState(parseInt(searchParams.get("_limit")) || 9);
   const [items, setItems] = useState([]);
 
-  // useEffect(() => {
-  //   setSearchParams({
-  //     q: search,
-  //     _limit: limit,
-  //     _page: page,
-  //     type: type.join(","),
-  //   });
-  // }, [search, limit, page, type, setSearchParams]);
+  useEffect(() => {
+    setSearchParams({
+      q: search,
+      _limit: limit,
+      _page: page,
+      type: type.join(","),
+    });
+  }, [search, limit, page, type, setSearchParams]);
 
   const searchHandle = (e) => {
     const searchTerm = e.toLowerCase(); // Получаем введённый текст и переводим его в нижний регистр
@@ -33,11 +33,10 @@ const TanksList = () => {
     );
     setItems(filtered);
   };
-  setTimeout(() => setItems(tanks), 300);
 
   useEffect(() => {
     getTanks();
-  }, [type]);
+  }, [type, search]);
 
   return (
     <div
@@ -65,8 +64,9 @@ const TanksList = () => {
           className="m-1"
           placeholder="Поиск"
           size="large"
+          value={search}
           style={{ width: "25vw" }}
-          onChange={(e) => searchHandle(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
         />
         <Filter type={type} setType={setType} />
       </div>
@@ -75,7 +75,7 @@ const TanksList = () => {
         className="d-flex justify-content-center flex-wrap"
         style={{ marginBottom: "100px" }}
       >
-        {items.map((item) => (
+        {tanks?.map((item) => (
           <Tanks key={item.id} item={item} />
         ))}
       </div>

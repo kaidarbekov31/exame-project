@@ -14,7 +14,7 @@ const Filter = ({ type, setType }) => {
       setLoading(false);
     };
     fetchTanks();
-  });
+  }, [getTanks]);
 
   if (loading) return <div>Loading...</div>;
 
@@ -28,8 +28,8 @@ const Filter = ({ type, setType }) => {
       placeholder="Фильтр"
     >
       {tanks.length > 0 ? (
-        tanks.map((item, idx) => (
-          <Option value={item.type} key={item.id + idx}>
+        tanks.map((item) => (
+          <Option value={item.type} key={item.id}>
             {item.type}
           </Option>
         ))
